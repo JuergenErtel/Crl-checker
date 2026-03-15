@@ -420,38 +420,16 @@ zone.addEventListener('drop', e => { e.preventDefault(); zone.style.borderColor=
 function handleFiles(files) {
   Array.from(files).forEach(f => {
     if (!f.type.startsWith('image/')) return;
-    resizeImage(f, (data) => {
-      images.push({data:data, name:f.name, type:'image/jpeg'});
+    const r = new FileReader();
+    r.onload = e => {
+      images.push({data: e.target.result, name: f.name, type: f.type});
       renderImages();
       updateBtn();
-    });
+    };
+    r.onerror = () => alert('Fehler beim Lesen: ' + f.name);
+    r.readAsDataURL(f);
   });
 }
-
-function resizeImage(file, callback) {
-  const img = new Image();
-  const url = URL.createObjectURL(file);
-  img.onload = function() {
-    URL.revokeObjectURL(url);
-    const MAX = 1200;
-    let w = img.width, h = img.height;
-    if (w > MAX || h > MAX) {
-      if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
-      else { w = Math.round(w * MAX / h); h = MAX; }
-    }
-    const canvas = document.createElement('canvas');
-    canvas.width = w; canvas.height = h;
-    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-    callback(canvas.toDataURL('image/jpeg', 0.85));
-  };
-  img.onerror = function() {
-    const r = new FileReader();
-    r.onload = e => callback(e.target.result);
-    r.readAsDataURL(file);
-  };
-  img.src = url;
-}
-
 function renderImages() {
   const grid = document.getElementById('imgGrid');
   grid.innerHTML = '';
@@ -481,6 +459,18 @@ async function analyze() {
   document.getElementById('rawBox').style.display = 'none';
   setLoad('CRL WIRD GELADEN...');
 
+  // Validate images first
+  for (const img of images) {
+    if (!img.data || !img.data.includes(',')) {
+      document.getElementById('loading').classList.remove('show');
+      document.getElementById('errorBox').style.display='block';
+      document.getElementById('errorBox').textContent='Bild konnte nicht gelesen werden: ' + img.name;
+      document.getElementById('analyzeBtn').disabled=false;
+      updateBtn();
+      return;
+    }
+  }
+
   // Step 1: fetch CRL
   let crlContent = `Kostüm: ${selected.name}, URL: ${selected.url}`;
   try {
@@ -495,7 +485,7 @@ async function analyze() {
     setLoad('KOSTÜM WIRD ANALYSIERT...');
   } catch { setLoad('ANALYSE LÄUFT...'); }
 
- // Step 2: analyze photos
+  // Step 2: analyze photos
   const imgs = images.map(img => ({type:'image',source:{type:'base64',media_type:img.type,data:img.data.split(',')[1]}}));
   try {
     const r = await fetch('/api/analyze', { method:'POST', headers:{'Content-Type':'application/json'},
@@ -510,6 +500,7 @@ Antworte NUR mit validem JSON ohne Markdown-Backticks:
     const d = await r.json();
     if (d.error) throw new Error(d.error.type+': '+d.error.message);
 
+    // Show raw API response for debugging
     const raw = (d.content||[]).map(b=>b.text||'').join('\n');
     document.getElementById('rawBox').style.display='block';
     document.getElementById('rawBox').textContent = '=== API RESPONSE ===\n' + JSON.stringify(d, null, 2).substring(0, 500) + '\n\n=== RAW TEXT ===\n' + raw.substring(0, 500);
