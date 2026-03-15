@@ -397,7 +397,7 @@ async function analyze() {
     imgContent.push({ type: 'text', text: 'Kostüm: ' + selectedName + '\n\nCRL:\n' + crlContent + '\n\nAnalysiere jede Anforderung konkret.' });
 
     const d2 = await callApi({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 2000,
       system: 'Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen. Antworte NUR mit validem JSON ohne Markdown: {"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}',
       messages: [{ role: 'user', content: imgContent }]
