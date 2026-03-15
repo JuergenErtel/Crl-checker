@@ -485,6 +485,24 @@ async function analyze() {
   document.getElementById('errorBox').style.display = 'none';
   document.getElementById('rawBox').style.display = 'none';
   setLoad('BILDER WERDEN VERARBEITET...');
+  // DEBUG: test without images first
+  try {
+    const testFetch = await fetch('/api/analyze', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:10, messages:[{role:'user',content:'hi'}]})
+    });
+    const testData = await testFetch.json();
+    document.getElementById('errorBox').style.display='block';
+    document.getElementById('errorBox').textContent = 'API TEST OK: ' + JSON.stringify(testData).substring(0,100);
+  } catch(testErr) {
+    document.getElementById('loading').classList.remove('show');
+    document.getElementById('errorBox').style.display='block';
+    document.getElementById('errorBox').textContent = 'API TEST FEHLER: ' + testErr.message + ' | ' + testErr.name;
+    document.getElementById('analyzeBtn').disabled=false;
+    updateBtn();
+    return;
+  }
 
   // Compress all images first
   let compressedImgs;
