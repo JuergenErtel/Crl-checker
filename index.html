@@ -4,213 +4,219 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>501st CRL Checker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --red:#cc0000;--red2:#ff3333;--dark:#050508;--panel:#0a0c12;
-    --panel2:#0f1219;--border:#1a2030;--borderb:#2a3555;
-    --text:#c8d4e8;--dim:#5a6a88;--accent:#e8c050;--green:#22cc66;
-  }
-  body{background:var(--dark);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh}
-  body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999}
-  ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--panel)}::-webkit-scrollbar-thumb{background:var(--borderb);border-radius:3px}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#cc0000;--dark:#050508;--panel:#0a0c12;--border:#1a2030;--borderb:#2a3555;--text:#c8d4e8;--dim:#5a6a88;--accent:#e8c050;--green:#22cc66}
+body{background:var(--dark);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;font-size:16px}
+header{background:rgba(5,5,8,.97);border-bottom:1px solid var(--border);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:3px;color:#fff}.logo span{color:var(--red)}
+main{max-width:720px;margin:0 auto;padding:28px 16px 80px}
+h1{font-family:'Orbitron',monospace;font-size:clamp(20px,4vw,32px);font-weight:900;color:#fff;text-align:center;margin-bottom:8px}
+h1 em{font-style:normal;color:var(--red)}
+.sub{text-align:center;color:var(--dim);font-size:14px;margin-bottom:28px;line-height:1.6}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:12px;overflow:hidden}
+.card-head{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.step{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;color:var(--red);background:rgba(204,0,0,.1);border:1px solid rgba(204,0,0,.2);padding:3px 8px}
+.card-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px}
+.card-body{padding:16px}
 
-  /* HEADER */
-  header{border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,.97);position:sticky;top:0;z-index:100}
-  .logo{display:flex;align-items:center;gap:12px}
-  .logo-text{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;letter-spacing:3px;color:#fff}
-  .logo-text span{color:var(--red)}
-  .logo-sub{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:4px;margin-top:2px}
-  .status{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px}
-  .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* SELECT */
+select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--borderb);border-radius:4px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;padding:13px 14px;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a88' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+select:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(204,0,0,.12)}
+select option{background:#0f1219;color:#fff;padding:8px}
+optgroup{color:var(--red);font-family:'Orbitron',monospace;font-size:11px}
 
-  /* MAIN */
-  main{max-width:780px;margin:0 auto;padding:32px 16px 80px}
+/* UPLOAD */
+.upload-zone{border:2px dashed var(--borderb);border-radius:4px;padding:24px;text-align:center;cursor:pointer;position:relative;transition:all .2s}
+.upload-zone:hover{border-color:var(--red);background:rgba(204,0,0,.04)}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-icon{font-size:32px;opacity:.4;margin-bottom:8px}
+.upload-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--dim);margin-bottom:4px}
+.upload-sub{font-size:12px;color:var(--dim);opacity:.6}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-top:12px}
+.img-thumb{position:relative;aspect-ratio:1;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--panel)}
+.img-thumb img{width:100%;height:100%;object-fit:cover}
+.img-thumb button{position:absolute;top:4px;right:4px;width:26px;height:26px;background:rgba(204,0,0,.9);border:none;border-radius:3px;color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.img-count{font-size:11px;color:var(--dim);margin-top:8px;letter-spacing:1px}
 
-  /* HERO */
-  .hero{text-align:center;margin-bottom:32px}
-  .hero-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:5px;color:var(--red);margin-bottom:12px}
-  .hero h1{font-family:'Orbitron',monospace;font-size:clamp(22px,5vw,36px);font-weight:900;color:#fff;margin-bottom:10px}
-  .hero h1 em{font-style:normal;color:var(--red);text-shadow:0 0 30px rgba(204,0,0,.5)}
-  .hero p{color:var(--dim);font-size:14px;line-height:1.7;max-width:460px;margin:0 auto}
+/* TEXT INPUT */
+input[type=text]{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;padding:12px 14px;outline:none}
+input[type=text]:focus{border-color:var(--red)}
+input[type=text]::placeholder{color:var(--dim)}
 
-  /* PANEL */
-  .panel{background:var(--panel);border:1px solid var(--border);border-radius:4px;margin-bottom:12px;overflow:hidden}
-  .panel-head{padding:11px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
-  .panel-num{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;color:var(--red);background:rgba(204,0,0,.1);border:1px solid rgba(204,0,0,.2);padding:3px 8px}
-  .panel-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;color:var(--text)}
-  .panel-body{padding:18px}
+/* BTN */
+.btn{width:100%;background:var(--red);color:#fff;border:none;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:4px;padding:17px;cursor:pointer;border-radius:3px;margin-top:14px;transition:all .2s}
+.btn:hover{background:#ff2222;box-shadow:0 0 30px rgba(204,0,0,.4)}
+.btn:disabled{background:var(--border);color:var(--dim);cursor:not-allowed;box-shadow:none}
 
-  /* INPUTS */
-  input[type=text]{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--borderb);border-radius:4px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;padding:13px 16px;outline:none;-webkit-appearance:none;transition:border-color .2s}
-  input[type=text]:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(204,0,0,.12)}
-  input[type=text]::placeholder{color:var(--dim)}
+/* LOADING */
+#loading{display:none;text-align:center;padding:36px 20px}
+#loading.show{display:block}
+.bar{width:180px;height:2px;background:var(--border);margin:14px auto;position:relative;overflow:hidden;border-radius:1px}
+.bar::after{content:'';position:absolute;height:100%;width:40%;background:var(--red);animation:scan 1.2s linear infinite;box-shadow:0 0 8px var(--red)}
+@keyframes scan{0%{left:-40%}100%{left:140%}}
+.load-msg{font-size:11px;color:var(--dim);letter-spacing:3px}
 
-  /* DROPDOWN */
-  .search-wrap{position:relative}
-  .dropdown{display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;background:#0e1118;border:1px solid var(--borderb);border-radius:4px;max-height:320px;overflow-y:auto;z-index:200;box-shadow:0 12px 40px rgba(0,0,0,.9);-webkit-overflow-scrolling:touch}
-  .dropdown.open{display:block}
-  .dd-cat{padding:9px 14px 7px;font-family:'Orbitron',monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--red);background:rgba(204,0,0,.1);border-bottom:1px solid var(--border);position:sticky;top:0}
-  .dd-item{padding:13px 16px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:500;color:var(--text);cursor:pointer;border-bottom:1px solid rgba(26,32,48,.6);min-height:48px;display:flex;align-items:center;-webkit-tap-highlight-color:transparent;transition:background .1s}
-  .dd-item:hover,.dd-item:active{background:rgba(204,0,0,.15);color:#fff}
-  .dd-item em{font-style:normal;color:var(--red2);font-weight:700}
-  .dd-empty{padding:20px;text-align:center;color:var(--dim);font-size:14px}
-  .selected-badge{display:none;margin-top:10px;background:rgba(34,204,102,.07);border:1px solid rgba(34,204,102,.25);border-radius:4px;padding:11px 14px;align-items:center;gap:10px;font-size:13px}
-  .selected-badge.show{display:flex}
-  .selected-badge .sname{color:#fff;font-weight:600;font-size:15px}
-  .selected-badge .scat{color:var(--dim)}
-
-  /* MOBILE PICKER */
-  #mpicker{display:none;position:fixed;inset:0;background:#0a0c12;z-index:9999;flex-direction:column}
-  #mpicker.open{display:flex}
-  #mp-head{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid var(--borderb);flex-shrink:0}
-  #mp-head span{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:3px;color:var(--red)}
-  #mp-close{background:rgba(204,0,0,.2);border:1px solid rgba(204,0,0,.4);color:#fff;font-size:20px;width:44px;height:44px;border-radius:4px;cursor:pointer}
-  #mp-search-wrap{padding:12px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
-  #mp-search{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--borderb);border-radius:4px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;padding:13px 16px;outline:none;-webkit-appearance:none}
-  #mp-search::placeholder{color:var(--dim)}
-  #mp-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
-
-  /* UPLOAD */
-  .upload-zone{border:1px dashed var(--borderb);border-radius:4px;padding:28px 20px;text-align:center;cursor:pointer;background:rgba(255,255,255,.01);transition:all .2s;position:relative}
-  .upload-zone:hover{border-color:var(--red);background:rgba(204,0,0,.04)}
-  .upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-  .upload-zone .uz-icon{font-size:28px;margin-bottom:8px;opacity:.4}
-  .upload-zone .uz-title{font-family:'Orbitron',monospace;font-size:11px;letter-spacing:2px;color:var(--dim);margin-bottom:5px}
-  .upload-zone .uz-sub{font-size:11px;color:var(--dim);opacity:.6}
-  .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-top:12px}
-  .img-thumb{position:relative;aspect-ratio:1;border:1px solid var(--border);border-radius:3px;overflow:hidden}
-  .img-thumb img{width:100%;height:100%;object-fit:cover}
-  .img-thumb button{position:absolute;top:3px;right:3px;width:24px;height:24px;background:rgba(204,0,0,.9);border:none;border-radius:2px;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .img-count{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);margin-top:8px;letter-spacing:2px}
-
-  /* BUTTON */
-  .btn-analyze{width:100%;background:var(--red);color:#fff;border:none;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:4px;padding:18px;cursor:pointer;border-radius:2px;transition:all .2s;margin-top:16px}
-  .btn-analyze:hover{background:var(--red2);box-shadow:0 0 30px rgba(204,0,0,.4)}
-  .btn-analyze:disabled{background:var(--border);color:var(--dim);cursor:not-allowed;box-shadow:none}
-
-  /* LOADING */
-  .loading{display:none;text-align:center;padding:40px 20px}
-  .loading.show{display:block}
-  .load-bar{width:200px;height:2px;background:var(--border);margin:16px auto;position:relative;overflow:hidden;border-radius:1px}
-  .load-bar::after{content:'';position:absolute;height:100%;width:40%;background:var(--red);animation:scanbar 1.2s linear infinite;box-shadow:0 0 8px var(--red)}
-  @keyframes scanbar{0%{left:-40%}100%{left:140%}}
-  .load-text{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--dim)}
-
-  /* RESULTS */
-  #results{display:none;margin-top:24px;animation:fadein .4s ease}
-  @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--borderb),transparent);margin:0 0 20px}
-
-  /* SCORE */
-  .score-banner{display:flex;align-items:center;gap:20px;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:4px;margin-bottom:12px}
-  .score-circle{width:76px;height:76px;border-radius:50%;border:2px solid currentColor;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
-  .score-num{font-family:'Orbitron',monospace;font-size:22px;font-weight:900;line-height:1}
-  .score-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;color:var(--dim);letter-spacing:2px}
-  .verdict-tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:8px}
-  .tag-ok{background:rgba(34,204,102,.15);color:var(--green);border:1px solid rgba(34,204,102,.3)}
-  .tag-warn{background:rgba(232,192,80,.15);color:var(--accent);border:1px solid rgba(232,192,80,.3)}
-  .tag-fail{background:rgba(204,0,0,.15);color:var(--red2);border:1px solid rgba(204,0,0,.3)}
-  .verdict-title{font-family:'Orbitron',monospace;font-size:14px;font-weight:700;color:#fff;margin-bottom:5px}
-  .verdict-text{font-size:13px;color:var(--dim);line-height:1.6}
-
-  /* REQ */
-  .req-panel{background:var(--panel);border:1px solid var(--border);border-radius:4px;margin-bottom:12px;overflow:hidden}
-  .req-sec-title{padding:9px 18px;font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px;color:var(--accent);background:rgba(232,192,80,.04);border-bottom:1px solid var(--border)}
-  .req-item{padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
-  .req-item:last-child{border-bottom:none}
-  .req-icon{width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px}
-  .icon-ok{color:var(--green);background:rgba(34,204,102,.15)}
-  .icon-fail{color:var(--red2);background:rgba(204,0,0,.15)}
-  .icon-warn{color:var(--accent);background:rgba(232,192,80,.15)}
-  .req-req{font-size:13px;font-weight:600;margin-bottom:3px;line-height:1.5}
-  .req-comment{font-size:12px;color:var(--dim);line-height:1.6;font-style:italic}
-
-  /* NEXT STEPS */
-  .next-steps{background:rgba(232,192,80,.04);border:1px solid rgba(232,192,80,.2);border-radius:4px;padding:20px}
-  .next-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:14px}
-  .step{padding:8px 0 8px 36px;position:relative;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,.05)}
-  .step:last-child{border-bottom:none}
-  .step-num{position:absolute;left:0;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);top:10px}
-
-  /* ERROR */
-  .error-box{background:rgba(204,0,0,.08);border:1px solid rgba(204,0,0,.3);border-radius:4px;padding:20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--red2);line-height:1.7;margin-top:16px;white-space:pre-wrap;display:none}
-
-  /* RAW */
-  .raw-box{background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:4px;padding:20px;font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.8;white-space:pre-wrap;max-height:400px;overflow-y:auto;margin-top:12px;display:none}
+/* RESULTS */
+#results{display:none;margin-top:20px;animation:fadein .3s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.score-row{display:flex;align-items:center;gap:18px;padding:18px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:10px}
+.score-circle{width:72px;height:72px;border-radius:50%;border:2px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.score-n{font-family:'Orbitron',monospace;font-size:20px;font-weight:900;line-height:1}
+.score-l{font-size:9px;color:var(--dim);letter-spacing:2px;margin-top:2px}
+.vtag{font-size:10px;letter-spacing:2px;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:7px}
+.vtag.ok{background:rgba(34,204,102,.15);color:var(--green);border:1px solid rgba(34,204,102,.3)}
+.vtag.warn{background:rgba(232,192,80,.15);color:var(--accent);border:1px solid rgba(232,192,80,.3)}
+.vtag.fail{background:rgba(204,0,0,.15);color:#ff4444;border:1px solid rgba(204,0,0,.3)}
+.vtitle{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.vtext{font-size:13px;color:var(--dim);line-height:1.6}
+.req-panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px}
+.req-panel .card-head{border-top:none}
+.sec-title{padding:8px 16px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);background:rgba(232,192,80,.04);border-bottom:1px solid var(--border)}
+.req-item{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
+.req-item:last-child{border-bottom:none}
+.req-ic{width:22px;height:22px;border-radius:50%;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px}
+.ic-ok{color:var(--green);border-color:rgba(34,204,102,.5);background:rgba(34,204,102,.1)}
+.ic-fail{color:#ff4444;border-color:rgba(204,0,0,.5);background:rgba(204,0,0,.1)}
+.ic-warn{color:var(--accent);border-color:rgba(232,192,80,.5);background:rgba(232,192,80,.1)}
+.req-text .req-r{font-size:13px;font-weight:600;line-height:1.5;margin-bottom:2px}
+.req-text .req-c{font-size:12px;color:var(--dim);line-height:1.5;font-style:italic}
+.steps{background:rgba(232,192,80,.04);border:1px solid rgba(232,192,80,.2);border-radius:6px;padding:18px;display:none}
+.steps-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
+.step-item{padding:7px 0 7px 32px;position:relative;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,.05)}
+.step-item:last-child{border-bottom:none}
+.step-n{position:absolute;left:0;top:9px;font-size:10px;color:var(--accent);font-family:'Orbitron',monospace}
+.error{background:rgba(204,0,0,.08);border:1px solid rgba(204,0,0,.3);border-radius:4px;padding:16px;color:#ff4444;font-size:13px;line-height:1.7;margin-top:14px;display:none;white-space:pre-wrap}
+.raw{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:4px;padding:16px;font-size:11px;line-height:1.8;white-space:pre-wrap;max-height:300px;overflow-y:auto;margin-top:10px;display:none;color:var(--dim)}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">
-    <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
-      <circle cx="22" cy="22" r="10" stroke="#cc0000" stroke-width="1.5"/>
-      <circle cx="22" cy="22" r="4" fill="#cc0000" opacity=".8"/>
-      <line x1="22" y1="4" x2="22" y2="10" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="22" y1="34" x2="22" y2="40" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="4" y1="22" x2="10" y2="22" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="34" y1="22" x2="40" y2="22" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="8.7" y1="8.7" x2="13" y2="13" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="31" y1="31" x2="35.3" y2="35.3" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="35.3" y1="8.7" x2="31" y2="13" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-      <line x1="13" y1="31" x2="8.7" y2="35.3" stroke="#cc0000" stroke-width="1.2" opacity=".7"/>
-    </svg>
-    <div>
-      <div class="logo-text"><span>501st</span> CRL CHECKER</div>
-      <div class="logo-sub">COSTUME ANALYSIS SYSTEM</div>
-    </div>
-  </div>
-  <div class="status"><div class="dot"></div>ONLINE</div>
+  <div class="logo"><span>501st</span> CRL CHECKER</div>
+  <div style="font-size:11px;color:var(--dim)">COSTUME ANALYSIS</div>
 </header>
 
-<!-- Mobile Picker -->
-<div id="mpicker">
-  <div id="mp-head">
-    <span>KOSTÜM WÄHLEN</span>
-    <button id="mp-close">✕</button>
-  </div>
-  <div id="mp-search-wrap">
-    <input id="mp-search" type="text" placeholder="Suchen... Boba, Vader, Trooper..." autocomplete="off"/>
-  </div>
-  <div id="mp-list"></div>
-</div>
-
 <main>
-  <div class="hero">
-    <div class="hero-label">► IMPERIAL GARRISON — COSTUME COMPLIANCE</div>
-    <h1>501st <em>CRL</em> Analyzer</h1>
-    <p>Kostüm auswählen, Fotos hochladen – die KI vergleicht mit den offiziellen 501st CRL-Anforderungen.</p>
-  </div>
+  <h1>501st <em>CRL</em> Analyzer</h1>
+  <p class="sub">Kostüm auswählen · Fotos hochladen · KI analysiert gegen offizielle CRL</p>
 
   <!-- Step 1 -->
-  <div class="panel">
-    <div class="panel-head"><span class="panel-num">STEP 01</span><span class="panel-title">KOSTÜM AUSWÄHLEN</span></div>
-    <div class="panel-body">
-      <div class="search-wrap">
-        <input type="text" id="costumeSearch" placeholder="Suchen... z.B. Boba Fett, Vader, Stormtrooper..." autocomplete="off"/>
-        <div class="dropdown" id="desktopDrop"></div>
-      </div>
-      <div class="selected-badge" id="selectedBadge">
-        <span style="color:var(--green);font-size:16px">✓</span>
-        <span class="sname" id="selectedName"></span>
-        <span class="scat" id="selectedCat"></span>
-      </div>
+  <div class="card">
+    <div class="card-head"><span class="step">01</span><span class="card-title">KOSTÜM AUSWÄHLEN</span></div>
+    <div class="card-body">
+      <select id="costumeSelect" onchange="onSelectChange()">
+        <option value="">— Kostüm wählen —</option>
+        <optgroup label="BH: Bounty Hunter">
+          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-original-trilogy-hero-version|Boba Fett: ROTJ Hero">Boba Fett: ROTJ Hero</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-empire-strikes-back|Boba Fett: ESB">Boba Fett: The Empire Strikes Back</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-special-edition|Boba Fett: ROTJ SE">Boba Fett: ROTJ Special Edition</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-book-of-boba-fett|Boba Fett: BoBF">Boba Fett: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/jango-fett|Jango Fett: AOTC">Jango Fett: AOTC</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-beskar|Din Djarin: Beskar S1">Din Djarin: Beskar (Season 1)</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-season-1-pre-beskar|Din Djarin: Pre-Beskar">Din Djarin: Pre-Beskar</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-the-book-of-boba-fett|Din Djarin: BoBF">Din Djarin: The Book Of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/4-lom|4-LOM">4-LOM</option>
+          <option value="https://crls.501st.com/bhg/bossk|Bossk ESB">Bossk - ESB</option>
+          <option value="https://crls.501st.com/bhg/boushh|Boushh">Boushh</option>
+          <option value="https://crls.501st.com/bhg/cad-bane|Cad Bane">Cad Bane</option>
+          <option value="https://crls.501st.com/bhg/cad-bane-the-book-of-boba-fett|Cad Bane BoBF">Cad Bane: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/dengar|Dengar">Dengar</option>
+          <option value="https://crls.501st.com/bhg/fennec-shand|Fennec Shand">Fennec Shand</option>
+          <option value="https://crls.501st.com/bhg/greedo-a-new-hope|Greedo ANH">Greedo: ANH Hero</option>
+          <option value="https://crls.501st.com/bhg/zam-wesell|Zam Wesell">Zam Wesell</option>
+          <option value="https://crls.501st.com/bhg/zuckuss|Zuckuss">Zuckuss</option>
+        </optgroup>
+        <optgroup label="SL: Sith Lord">
+          <option value="https://crls.501st.com/sld/darth-vader-a-new-hope|Darth Vader ANH">Darth Vader: ANH</option>
+          <option value="https://crls.501st.com/sld/darth-vader-esb|Darth Vader ESB">Darth Vader: ESB</option>
+          <option value="https://crls.501st.com/sld/darth-vader-revenge-of-the-sith|Darth Vader ROTS">Darth Vader: ROTS</option>
+          <option value="https://crls.501st.com/sld/darth-vader-return-of-the-jedi|Darth Vader ROTJ">Darth Vader: ROTJ</option>
+          <option value="https://crls.501st.com/sld/darth-maul-the-phantom-menace|Darth Maul TPM">Darth Maul: The Phantom Menace</option>
+          <option value="https://crls.501st.com/sld/darth-maul-solo|Darth Maul Solo">Darth Maul: Solo</option>
+          <option value="https://crls.501st.com/sld/count-dooku-attack-of-the-clones|Count Dooku AOTC">Count Dooku: AOTC</option>
+          <option value="https://crls.501st.com/sld/darth-sidious-revenge-of-the-sith|Darth Sidious ROTS">Darth Sidious: ROTS</option>
+          <option value="https://crls.501st.com/sld/kylo-ren-the-force-awakens|Kylo Ren TFA">Kylo Ren: The Force Awakens</option>
+          <option value="https://crls.501st.com/sld/kylo-ren-the-last-jedi|Kylo Ren TLJ">Kylo Ren: The Last Jedi</option>
+          <option value="https://crls.501st.com/sld/kylo-ren-supreme-leader|Kylo Ren Supreme Leader">Kylo Ren: Supreme Leader</option>
+        </optgroup>
+        <optgroup label="ST: Stormtrooper">
+          <option value="https://crls.501st.com/isd/stormtrooper-anh-hero|Stormtrooper ANH Hero">Stormtrooper: ANH Hero</option>
+          <option value="https://crls.501st.com/isd/stormtrooper-anh-stunt|Stormtrooper ANH Stunt">Stormtrooper: ANH Stunt</option>
+          <option value="https://crls.501st.com/isd/stormtrooper-esb|Stormtrooper ESB">Stormtrooper: ESB</option>
+          <option value="https://crls.501st.com/isd/stormtrooper-rotj|Stormtrooper ROTJ">Stormtrooper: ROTJ</option>
+          <option value="https://crls.501st.com/isd/stormtrooper-rogue-one|Stormtrooper R1">Stormtrooper: Rogue One</option>
+          <option value="https://crls.501st.com/bf/snowtrooper-esb|Snowtrooper ESB">Snowtrooper: ESB</option>
+          <option value="https://crls.501st.com/sd/sandtrooper-anh|Sandtrooper ANH">Sandtrooper: ANH</option>
+          <option value="https://crls.501st.com/isd/death-trooper-rogue-one|Death Trooper R1">Death Trooper: Rogue One</option>
+          <option value="https://crls.501st.com/isd/shoretrooper-rogue-one|Shoretrooper R1">Shoretrooper: Rogue One</option>
+          <option value="https://crls.501st.com/isd/mimban-stormtrooper-solo|Mimban Stormtrooper">Mimban Stormtrooper: Solo</option>
+          <option value="https://crls.501st.com/isd/first-order-stormtrooper-tfa|FO Stormtrooper TFA">First Order Stormtrooper: TFA</option>
+          <option value="https://crls.501st.com/isd/first-order-stormtrooper-tlj|FO Stormtrooper TLJ">First Order Stormtrooper: TLJ</option>
+        </optgroup>
+        <optgroup label="TD: TIE Fighter Pilot">
+          <option value="https://crls.501st.com/jrs/tie-fighter-pilot-anh|TIE Pilot ANH">TIE Fighter Pilot: ANH</option>
+          <option value="https://crls.501st.com/jrs/tie-fighter-pilot-esb|TIE Pilot ESB">TIE Fighter Pilot: ESB</option>
+          <option value="https://crls.501st.com/jrs/tie-fighter-pilot-rotj|TIE Pilot ROTJ">TIE Fighter Pilot: ROTJ</option>
+          <option value="https://crls.501st.com/jrs/first-order-tie-pilot-tfa|FO TIE Pilot TFA">First Order TIE Pilot: TFA</option>
+        </optgroup>
+        <optgroup label="ID: Imperial Officer">
+          <option value="https://crls.501st.com/ioc/anh-staff-officer|ANH Staff Officer">ANH Staff Officer</option>
+          <option value="https://crls.501st.com/ioc/grand-moff-tarkin|Grand Moff Tarkin">Grand Moff Tarkin</option>
+          <option value="https://crls.501st.com/ioc/director-krennic|Director Krennic">Director Krennic</option>
+          <option value="https://crls.501st.com/ioc/moff-gideon|Moff Gideon">Moff Gideon</option>
+          <option value="https://crls.501st.com/ioc/grand-admiral-thrawn-ahsoka|Thrawn Ahsoka">Grand Admiral Thrawn: Ahsoka</option>
+          <option value="https://crls.501st.com/ioc/death-squad-commander|Death Squad Commander">Death Squad Commander</option>
+          <option value="https://crls.501st.com/ioc/imperial-cadet|Imperial Cadet">Imperial Cadet</option>
+        </optgroup>
+        <optgroup label="CC: Clone Commander">
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-1|Rex Phase 1">Clone Captain Rex (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-2|Rex Phase 2">Clone Captain Rex (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-ii|Cody ROTS">Commander Cody (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-wolffe-season-2|Wolffe S2">Commander Wolffe (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/commander-thorn|Thorn">Commander Thorn (TCW Phase 2)</option>
+        </optgroup>
+        <optgroup label="CT: Clone Trooper">
+          <option value="https://crls.501st.com/ctd/501st-clone-trooper|501st ROTS">501st Clone Trooper (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/212th-attack-battalion|212th ROTS">212th Attack Battalion (ROTS)</option>
+          <option value="https://crls.501st.com/ctd/shock-trooper|Shock Trooper ROTS">Shock Trooper (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/clone-trooper-phase-ii|Standard ROTS">Clone Trooper Standard (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/332nd-division-clone-trooper|332nd TCW">332nd Division (TCW Phase 2)</option>
+        </optgroup>
+        <optgroup label="DS: Dark Side Adept">
+          <option value="https://crls.501st.com/tfe/grand-inquisitor|Grand Inquisitor">Grand Inquisitor</option>
+          <option value="https://crls.501st.com/tfe/third-sister-reva-obi-wan-kenobi|Third Sister Reva">Third Sister: Reva</option>
+          <option value="https://crls.501st.com/tfe/asajj-ventress-clone-wars|Asajj Ventress CW">Asajj Ventress: Clone Wars</option>
+        </optgroup>
+        <optgroup label="DZ: Denizen">
+          <option value="https://crls.501st.com/kc/jawa|Jawa">Jawa</option>
+          <option value="https://crls.501st.com/kc/tusken-raider|Tusken Raider ANH">Tusken Raider ANH (male)</option>
+          <option value="https://crls.501st.com/kc/gamorrean-guard|Gamorrean Guard">Gamorrean Guard</option>
+        </optgroup>
+        <optgroup label="SR: Imperial Royal Guard">
+          <option value="https://crls.501st.com/sp/imperial-royal-guard-rotj|Imperial Royal Guard">Imperial Royal Guard: ROTJ</option>
+        </optgroup>
+        <optgroup label="MW: Mandalorian Warrior">
+          <option value="https://crls.501st.com/bhg/bo-katan-the-mandalorian-season-2|Bo-Katan S2">Bo-Katan: The Mandalorian S2</option>
+          <option value="https://crls.501st.com/bhg/mandalor-bo-katan|Bo-Katan Mandalor">Bo-Katan: Mand'alore</option>
+        </optgroup>
+        <optgroup label="AR: ARC Trooper">
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-standard|ARC Standard">ARC Trooper Standard (EU Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-fives-phase-i|ARC Fives">ARC Trooper: Fives (TCW Phase 1)</option>
+        </optgroup>
+      </select>
     </div>
   </div>
 
   <!-- Step 2 -->
-  <div class="panel">
-    <div class="panel-head"><span class="panel-num">STEP 02</span><span class="panel-title">KOSTÜMFOTOS HOCHLADEN</span></div>
-    <div class="panel-body">
+  <div class="card">
+    <div class="card-head"><span class="step">02</span><span class="card-title">KOSTÜMFOTOS HOCHLADEN</span></div>
+    <div class="card-body">
       <div class="upload-zone" id="uploadZone">
-        <input type="file" id="fileInput" accept="image/*" multiple/>
-        <div class="uz-icon">📸</div>
-        <div class="uz-title">FOTOS ABLEGEN ODER KLICKEN</div>
-        <div class="uz-sub">JPG, PNG, WEBP · Mehrere möglich</div>
+        <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)">
+        <div class="upload-icon">📸</div>
+        <div class="upload-title">TIPPEN ODER ABLEGEN</div>
+        <div class="upload-sub">JPG · PNG · WEBP · Mehrere möglich</div>
       </div>
       <div class="img-grid" id="imgGrid"></div>
       <div class="img-count" id="imgCount"></div>
@@ -218,406 +224,266 @@
   </div>
 
   <!-- Step 3 -->
-  <div class="panel">
-    <div class="panel-head"><span class="panel-num">STEP 03</span><span class="panel-title">OPTIONALE HINWEISE</span></div>
-    <div class="panel-body">
-      <input type="text" id="extraInfo" placeholder="z.B. Helm aus ABS, selbst gebaut, Stiefel aus Leder..."/>
+  <div class="card">
+    <div class="card-head"><span class="step">03</span><span class="card-title">OPTIONALE HINWEISE</span></div>
+    <div class="card-body">
+      <input type="text" id="extraInfo" placeholder="z.B. Helm ABS, selbst gebaut, Leder-Stiefel...">
     </div>
   </div>
 
-  <button class="btn-analyze" id="analyzeBtn" disabled onclick="analyze()">▶ KOSTÜM ANALYSIEREN</button>
+  <button class="btn" id="analyzeBtn" onclick="analyze()" disabled>▶ KOSTÜM ANALYSIEREN</button>
 
-  <div class="loading" id="loading">
-    <div class="load-bar"></div>
-    <div class="load-text" id="loadText">ANALYSIERE...</div>
-  </div>
-
-  <div class="error-box" id="errorBox"></div>
+  <div id="loading"><div class="bar"></div><div class="load-msg" id="loadMsg">ANALYSIERE...</div></div>
+  <div class="error" id="errorBox"></div>
 
   <div id="results">
-    <div class="divider"></div>
-    <div class="score-banner">
+    <div style="height:1px;background:linear-gradient(90deg,transparent,#2a3555,transparent);margin:20px 0"></div>
+    <div class="score-row">
       <div class="score-circle" id="scoreCircle">
-        <div class="score-num" id="scoreNum">—</div>
-        <div class="score-lbl">SCORE</div>
+        <div class="score-n" id="scoreNum">—</div>
+        <div class="score-l">SCORE</div>
       </div>
       <div>
-        <div class="verdict-tag" id="verdictTag">—</div>
-        <div class="verdict-title" id="verdictTitle"></div>
-        <div class="verdict-text" id="verdictText"></div>
+        <div class="vtag" id="vtag">—</div>
+        <div class="vtitle" id="vtitle"></div>
+        <div class="vtext" id="vtext"></div>
       </div>
     </div>
-    <div class="req-panel" id="reqPanel">
-      <div class="panel-head"><span class="panel-num">ANALYSE</span><span class="panel-title">ANFORDERUNGEN IM DETAIL</span></div>
+    <div class="req-panel">
+      <div class="card-head"><span class="step">ANALYSE</span><span class="card-title">ANFORDERUNGEN</span></div>
       <div id="reqList"></div>
     </div>
-    <div class="next-steps" id="nextSteps" style="display:none">
-      <div class="next-title">► NÄCHSTE SCHRITTE FÜR APPROVAL</div>
+    <div class="steps" id="stepsPanel">
+      <div class="steps-title">► NÄCHSTE SCHRITTE FÜR APPROVAL</div>
       <div id="stepsList"></div>
     </div>
-    <div class="raw-box" id="rawBox"></div>
+    <div class="raw" id="rawBox"></div>
   </div>
 </main>
 
 <script>
-const COSTUMES = [
-  {cat:"BH: Bounty Hunter",name:"Boba Fett: ROTJ Hero",url:"https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-original-trilogy-hero-version"},
-  {cat:"BH: Bounty Hunter",name:"Boba Fett: The Empire Strikes Back",url:"https://crls.501st.com/bhg/boba-fett-empire-strikes-back"},
-  {cat:"BH: Bounty Hunter",name:"Boba Fett: ROTJ Special Edition",url:"https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-special-edition"},
-  {cat:"BH: Bounty Hunter",name:"Boba Fett: The Book of Boba Fett",url:"https://crls.501st.com/bhg/boba-fett-book-of-boba-fett"},
-  {cat:"BH: Bounty Hunter",name:"Boba Fett: Repainted Armour - The Mandalorian S2",url:"https://crls.501st.com/bhg/boba-fett-repainted-armor-the-mandalorian-s2"},
-  {cat:"BH: Bounty Hunter",name:"Jango Fett: AOTC",url:"https://crls.501st.com/bhg/jango-fett"},
-  {cat:"BH: Bounty Hunter",name:"Din Djarin: Beskar (Season 1)",url:"https://crls.501st.com/bhg/din-djarin-beskar"},
-  {cat:"BH: Bounty Hunter",name:"Din Djarin: Pre-Beskar",url:"https://crls.501st.com/bhg/din-djarin-season-1-pre-beskar"},
-  {cat:"BH: Bounty Hunter",name:"Din Djarin: The Book Of Boba Fett",url:"https://crls.501st.com/bhg/din-djarin-the-book-of-boba-fett"},
-  {cat:"BH: Bounty Hunter",name:"4-LOM",url:"https://crls.501st.com/bhg/4-lom"},
-  {cat:"BH: Bounty Hunter",name:"Bossk - ESB",url:"https://crls.501st.com/bhg/bossk"},
-  {cat:"BH: Bounty Hunter",name:"Boushh",url:"https://crls.501st.com/bhg/boushh"},
-  {cat:"BH: Bounty Hunter",name:"Cad Bane",url:"https://crls.501st.com/bhg/cad-bane"},
-  {cat:"BH: Bounty Hunter",name:"Cad Bane: The Book of Boba Fett",url:"https://crls.501st.com/bhg/cad-bane-the-book-of-boba-fett"},
-  {cat:"BH: Bounty Hunter",name:"Dengar",url:"https://crls.501st.com/bhg/dengar"},
-  {cat:"BH: Bounty Hunter",name:"Fennec Shand",url:"https://crls.501st.com/bhg/fennec-shand"},
-  {cat:"BH: Bounty Hunter",name:"Greedo: ANH Hero",url:"https://crls.501st.com/bhg/greedo-a-new-hope"},
-  {cat:"BH: Bounty Hunter",name:"Zam Wesell",url:"https://crls.501st.com/bhg/zam-wesell"},
-  {cat:"BH: Bounty Hunter",name:"Zuckuss",url:"https://crls.501st.com/bhg/zuckuss"},
-  {cat:"SL: Sith Lord",name:"Darth Vader: ANH",url:"https://crls.501st.com/sld/darth-vader-a-new-hope"},
-  {cat:"SL: Sith Lord",name:"Darth Vader: ESB",url:"https://crls.501st.com/sld/darth-vader-esb"},
-  {cat:"SL: Sith Lord",name:"Darth Vader: ROTS",url:"https://crls.501st.com/sld/darth-vader-revenge-of-the-sith"},
-  {cat:"SL: Sith Lord",name:"Darth Vader: ROTJ",url:"https://crls.501st.com/sld/darth-vader-return-of-the-jedi"},
-  {cat:"SL: Sith Lord",name:"Darth Maul: The Phantom Menace",url:"https://crls.501st.com/sld/darth-maul-the-phantom-menace"},
-  {cat:"SL: Sith Lord",name:"Darth Maul: Solo",url:"https://crls.501st.com/sld/darth-maul-solo"},
-  {cat:"SL: Sith Lord",name:"Count Dooku: AOTC",url:"https://crls.501st.com/sld/count-dooku-attack-of-the-clones"},
-  {cat:"SL: Sith Lord",name:"Darth Sidious: ROTS",url:"https://crls.501st.com/sld/darth-sidious-revenge-of-the-sith"},
-  {cat:"ST: Stormtrooper",name:"Stormtrooper: ANH Hero",url:"https://crls.501st.com/isd/stormtrooper-anh-hero"},
-  {cat:"ST: Stormtrooper",name:"Stormtrooper: ANH Stunt",url:"https://crls.501st.com/isd/stormtrooper-anh-stunt"},
-  {cat:"ST: Stormtrooper",name:"Stormtrooper: ESB",url:"https://crls.501st.com/isd/stormtrooper-esb"},
-  {cat:"ST: Stormtrooper",name:"Stormtrooper: ROTJ",url:"https://crls.501st.com/isd/stormtrooper-rotj"},
-  {cat:"ST: Stormtrooper",name:"Stormtrooper: Rogue One",url:"https://crls.501st.com/isd/stormtrooper-rogue-one"},
-  {cat:"ST: Stormtrooper",name:"Snowtrooper: ESB",url:"https://crls.501st.com/bf/snowtrooper-esb"},
-  {cat:"ST: Stormtrooper",name:"Sandtrooper: ANH",url:"https://crls.501st.com/sd/sandtrooper-anh"},
-  {cat:"ST: Stormtrooper",name:"Death Trooper: Rogue One",url:"https://crls.501st.com/isd/death-trooper-rogue-one"},
-  {cat:"ST: Stormtrooper",name:"Shoretrooper: Rogue One",url:"https://crls.501st.com/isd/shoretrooper-rogue-one"},
-  {cat:"ST: Stormtrooper",name:"Mimban Stormtrooper: Solo",url:"https://crls.501st.com/isd/mimban-stormtrooper-solo"},
-  {cat:"ST: Stormtrooper",name:"First Order Stormtrooper: TFA",url:"https://crls.501st.com/isd/first-order-stormtrooper-tfa"},
-  {cat:"ST: Stormtrooper",name:"First Order Stormtrooper: TLJ",url:"https://crls.501st.com/isd/first-order-stormtrooper-tlj"},
-  {cat:"TD: TIE Fighter Pilot",name:"TIE Fighter Pilot: ANH",url:"https://crls.501st.com/jrs/tie-fighter-pilot-anh"},
-  {cat:"TD: TIE Fighter Pilot",name:"TIE Fighter Pilot: ESB",url:"https://crls.501st.com/jrs/tie-fighter-pilot-esb"},
-  {cat:"TD: TIE Fighter Pilot",name:"TIE Fighter Pilot: ROTJ",url:"https://crls.501st.com/jrs/tie-fighter-pilot-rotj"},
-  {cat:"TD: TIE Fighter Pilot",name:"First Order TIE Fighter Pilot: TFA",url:"https://crls.501st.com/jrs/first-order-tie-pilot-tfa"},
-  {cat:"ID: Imperial Officer",name:"ANH Staff Officer",url:"https://crls.501st.com/ioc/anh-staff-officer"},
-  {cat:"ID: Imperial Officer",name:"Grand Moff Tarkin",url:"https://crls.501st.com/ioc/grand-moff-tarkin"},
-  {cat:"ID: Imperial Officer",name:"Director Krennic",url:"https://crls.501st.com/ioc/director-krennic"},
-  {cat:"ID: Imperial Officer",name:"Moff Gideon",url:"https://crls.501st.com/ioc/moff-gideon"},
-  {cat:"ID: Imperial Officer",name:"Grand Admiral Thrawn - Ahsoka",url:"https://crls.501st.com/ioc/grand-admiral-thrawn-ahsoka"},
-  {cat:"ID: Imperial Officer",name:"Death Squad Commander",url:"https://crls.501st.com/ioc/death-squad-commander"},
-  {cat:"CC: Clone Commander",name:"Clone Captain Rex (TCW Phase 1)",url:"https://crls.501st.com/ctd/captain-rex-phase-1"},
-  {cat:"CC: Clone Commander",name:"Clone Captain Rex (TCW Phase 2)",url:"https://crls.501st.com/ctd/captain-rex-phase-2"},
-  {cat:"CC: Clone Commander",name:"Commander Cody (ROTS Phase 2)",url:"https://crls.501st.com/ctd/commander-cody-phase-ii"},
-  {cat:"CC: Clone Commander",name:"Commander Wolffe (TCW Phase 1)",url:"https://crls.501st.com/ctd/commander-wolffe-season-2"},
-  {cat:"CT: Clone Trooper",name:"501st Clone Trooper (ROTS Phase 2)",url:"https://crls.501st.com/ctd/501st-clone-trooper"},
-  {cat:"CT: Clone Trooper",name:"212th Attack Battalion (ROTS)",url:"https://crls.501st.com/ctd/212th-attack-battalion"},
-  {cat:"CT: Clone Trooper",name:"Shock Trooper (ROTS Phase 2)",url:"https://crls.501st.com/ctd/shock-trooper"},
-  {cat:"CT: Clone Trooper",name:"Clone Trooper Standard (ROTS Phase 2)",url:"https://crls.501st.com/ctd/clone-trooper-phase-ii"},
-  {cat:"DS: Dark Side Adept",name:"Grand Inquisitor",url:"https://crls.501st.com/tfe/grand-inquisitor"},
-  {cat:"DS: Dark Side Adept",name:"Kylo Ren: The Force Awakens",url:"https://crls.501st.com/sld/kylo-ren-the-force-awakens"},
-  {cat:"DS: Dark Side Adept",name:"Kylo Ren: The Last Jedi",url:"https://crls.501st.com/sld/kylo-ren-the-last-jedi"},
-  {cat:"DS: Dark Side Adept",name:"Third Sister: Reva (Obi-Wan Kenobi)",url:"https://crls.501st.com/tfe/third-sister-reva-obi-wan-kenobi"},
-  {cat:"DS: Dark Side Adept",name:"Asajj Ventress: Clone Wars",url:"https://crls.501st.com/tfe/asajj-ventress-clone-wars"},
-  {cat:"DZ: Denizen",name:"Jawa",url:"https://crls.501st.com/kc/jawa"},
-  {cat:"DZ: Denizen",name:"Tusken Raider ANH (male)",url:"https://crls.501st.com/kc/tusken-raider"},
-  {cat:"DZ: Denizen",name:"Gamorrean Guard",url:"https://crls.501st.com/kc/gamorrean-guard"},
-  {cat:"SR: Imperial Royal Guard",name:"Imperial Royal Guard: ROTJ",url:"https://crls.501st.com/sp/imperial-royal-guard-rotj"},
-  {cat:"MW: Mandalorian Warrior",name:"Bo-Katan: The Mandalorian (Season 2)",url:"https://crls.501st.com/bhg/bo-katan-the-mandalorian-season-2"},
-  {cat:"MW: Mandalorian Warrior",name:"Bo-Katan: Mand'alore",url:"https://crls.501st.com/bhg/mandalor-bo-katan"},
-  {cat:"AR: ARC Trooper",name:"ARC Trooper Standard (EU Phase 1)",url:"https://crls.501st.com/ctd/advanced-recon-commando-standard"},
-  {cat:"AR: ARC Trooper",name:"ARC Trooper (TCW Phase 1): Fives",url:"https://crls.501st.com/ctd/advanced-recon-commando-fives-phase-i"},
-];
-
-// ── State ────────────────────────────────────────────────
-let selected = null;
 const images = [];
-const isMobile = () => window.innerWidth <= 700;
+let selectedUrl = '';
+let selectedName = '';
 
-// ── Dropdown (Desktop) ───────────────────────────────────
-const searchEl = document.getElementById('costumeSearch');
-const dropEl   = document.getElementById('desktopDrop');
-
-searchEl.addEventListener('focus', () => { if (!isMobile()) renderDrop(searchEl.value); });
-searchEl.addEventListener('input', () => { if (!isMobile()) renderDrop(searchEl.value); else return; });
-document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) dropEl.classList.remove('open'); });
-
-function renderDrop(q) {
-  dropEl.innerHTML = '';
-  const matches = q.trim()
-    ? COSTUMES.filter(c => c.name.toLowerCase().includes(q.toLowerCase()) || c.cat.toLowerCase().includes(q.toLowerCase()))
-    : COSTUMES;
-  if (!matches.length) { dropEl.innerHTML = '<div class="dd-empty">Keine Kostüme gefunden</div>'; dropEl.classList.add('open'); return; }
-  const g = {}; matches.forEach(c => (g[c.cat]=g[c.cat]||[]).push(c));
-  Object.entries(g).forEach(([cat, items]) => {
-    const h = document.createElement('div'); h.className='dd-cat'; h.textContent=cat; dropEl.appendChild(h);
-    items.forEach(item => {
-      const el = document.createElement('div'); el.className='dd-item';
-      if (q.trim()) { const r=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'); el.innerHTML=item.name.replace(r,'<em>$1</em>'); }
-      else el.textContent = item.name;
-      el.addEventListener('mousedown', e => { e.preventDefault(); pickCostume(item); });
-      dropEl.appendChild(el);
-    });
-  });
-  dropEl.classList.add('open');
-}
-
-// ── Mobile Picker ────────────────────────────────────────
-const mpicker  = document.getElementById('mpicker');
-const mpSearch = document.getElementById('mp-search');
-const mpList   = document.getElementById('mp-list');
-
-searchEl.addEventListener('focus', () => { if (isMobile()) { searchEl.blur(); openMobile(); } });
-document.getElementById('mp-close').addEventListener('click', () => mpicker.classList.remove('open'));
-mpSearch.addEventListener('input', () => fillList(mpSearch.value, mpList, true));
-
-function openMobile() {
-  mpSearch.value = ''; mpList.innerHTML = '';
-  fillList('', mpList, true);
-  mpicker.classList.add('open');
-  setTimeout(() => mpSearch.focus(), 150);
-}
-
-function fillList(q, container, touch) {
-  container.innerHTML = '';
-  const matches = q.trim() ? COSTUMES.filter(c => c.name.toLowerCase().includes(q.toLowerCase()) || c.cat.toLowerCase().includes(q.toLowerCase())) : COSTUMES;
-  if (!matches.length) { container.innerHTML='<div class="dd-empty">Keine Kostüme gefunden</div>'; return; }
-  const g = {}; matches.forEach(c => (g[c.cat]=g[c.cat]||[]).push(c));
-  Object.entries(g).forEach(([cat, items]) => {
-    const h = document.createElement('div'); h.className='dd-cat'; h.textContent=cat; container.appendChild(h);
-    items.forEach(item => {
-      const el = document.createElement('div'); el.className='dd-item';
-      if (q.trim()) { const r=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'); el.innerHTML=item.name.replace(r,'<em>$1</em>'); }
-      else el.textContent = item.name;
-      el.addEventListener(touch ? 'touchend' : 'mousedown', e => { e.preventDefault(); pickCostume(item); });
-      container.appendChild(el);
-    });
-  });
-}
-
-function pickCostume(item) {
-  selected = item;
-  searchEl.value = item.name;
-  document.getElementById('selectedName').textContent = item.name;
-  document.getElementById('selectedCat').textContent = '— ' + item.cat;
-  document.getElementById('selectedBadge').classList.add('show');
-  dropEl.classList.remove('open');
-  mpicker.classList.remove('open');
+function onSelectChange() {
+  const val = document.getElementById('costumeSelect').value;
+  if (val) {
+    const parts = val.split('|');
+    selectedUrl = parts[0];
+    selectedName = parts[1] || parts[0];
+  } else {
+    selectedUrl = '';
+    selectedName = '';
+  }
   updateBtn();
 }
-
-// ── Image Upload ─────────────────────────────────────────
-document.getElementById('fileInput').addEventListener('change', e => handleFiles(e.target.files));
-const zone = document.getElementById('uploadZone');
-zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor='var(--red)'; });
-zone.addEventListener('dragleave', () => zone.style.borderColor='');
-zone.addEventListener('drop', e => { e.preventDefault(); zone.style.borderColor=''; handleFiles(e.dataTransfer.files); });
 
 function handleFiles(files) {
   Array.from(files).forEach(f => {
     if (!f.type.startsWith('image/')) return;
-    const r = new FileReader();
-    r.onload = e => {
-      images.push({data: e.target.result, name: f.name, type: f.type});
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      images.push({ data: e.target.result, type: f.type, name: f.name });
       renderImages();
       updateBtn();
     };
-    r.onerror = () => alert('Fehler beim Lesen: ' + f.name);
-    r.readAsDataURL(f);
+    reader.readAsDataURL(f);
   });
 }
+
 function renderImages() {
   const grid = document.getElementById('imgGrid');
   grid.innerHTML = '';
-  images.forEach((img, i) => {
-    const d = document.createElement('div'); d.className='img-thumb';
-    d.innerHTML = `<img src="${img.data}" alt=""><button onclick="removeImg(${i})">✕</button>`;
-    grid.appendChild(d);
+  images.forEach(function(img, i) {
+    const div = document.createElement('div');
+    div.className = 'img-thumb';
+    const im = document.createElement('img');
+    im.src = img.data;
+    const btn = document.createElement('button');
+    btn.textContent = '✕';
+    btn.onclick = function() { removeImg(i); };
+    div.appendChild(im);
+    div.appendChild(btn);
+    grid.appendChild(div);
   });
-  document.getElementById('imgCount').textContent = images.length ? `► ${images.length} FOTO${images.length>1?'S':''} GELADEN` : '';
+  document.getElementById('imgCount').textContent = images.length > 0 ? '► ' + images.length + ' FOTO' + (images.length > 1 ? 'S' : '') + ' GELADEN' : '';
 }
 
-function removeImg(i) { images.splice(i,1); renderImages(); updateBtn(); }
+function removeImg(i) {
+  images.splice(i, 1);
+  renderImages();
+  updateBtn();
+}
 
 function updateBtn() {
-  document.getElementById('analyzeBtn').disabled = !(selected && images.length > 0);
+  document.getElementById('analyzeBtn').disabled = !(selectedUrl && images.length > 0);
 }
 
-// ── Analyze ──────────────────────────────────────────────
+function setMsg(t) { document.getElementById('loadMsg').textContent = t; }
 
-// Compress image to max ~800px and quality 0.7 using canvas
-function compressImage(dataUrl, mimeType) {
-  return new Promise(resolve => {
-    const img = new Image();
-    img.onload = () => {
-      const MAX = 800;
-      let w = img.naturalWidth || img.width;
-      let h = img.naturalHeight || img.height;
-      if (w > MAX || h > MAX) {
-        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
-        else { w = Math.round(w * MAX / h); h = MAX; }
-      }
-      try {
-        const c = document.createElement('canvas');
-        c.width = w; c.height = h;
-        c.getContext('2d').drawImage(img, 0, 0, w, h);
-        resolve({ data: c.toDataURL('image/jpeg', 0.7), type: 'image/jpeg' });
-      } catch(e) {
-        resolve({ data: dataUrl, type: mimeType });
-      }
-    };
-    img.onerror = () => resolve({ data: dataUrl, type: mimeType });
-    img.src = dataUrl;
+function showError(msg) {
+  document.getElementById('loading').classList.remove('show');
+  const eb = document.getElementById('errorBox');
+  eb.style.display = 'block';
+  eb.textContent = msg;
+  document.getElementById('analyzeBtn').disabled = false;
+  updateBtn();
+}
+
+async function callApi(payload) {
+  const res = await fetch('/api/analyze', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
   });
+  return await res.json();
 }
 
 async function analyze() {
-  if (!selected || !images.length) return;
-  const extra = document.getElementById('extraInfo').value.trim();
+  if (!selectedUrl || images.length === 0) return;
 
   document.getElementById('analyzeBtn').disabled = true;
   document.getElementById('loading').classList.add('show');
   document.getElementById('results').style.display = 'none';
   document.getElementById('errorBox').style.display = 'none';
   document.getElementById('rawBox').style.display = 'none';
-  setLoad('BILDER WERDEN VERARBEITET...');
-  // DEBUG: test basic fetch
-  try {
-    var testBody = {};
-    testBody.model = 'claude-sonnet-4-20250514';
-    testBody.max_tokens = 10;
-    testBody.messages = [{role:'user',content:'hi'}];
-    var testStr = JSON.stringify(testBody);
-    var testFetch = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: testStr
-    });
-    var testData = await testFetch.json();
-    document.getElementById('errorBox').style.display = 'block';
-    document.getElementById('errorBox').textContent = 'API TEST OK: ' + JSON.stringify(testData).substring(0,150);
-  } catch(testErr) {
-    document.getElementById('loading').classList.remove('show');
-    document.getElementById('errorBox').style.display = 'block';
-    document.getElementById('errorBox').textContent = 'API TEST FEHLER: ' + testErr.message + ' | ' + testErr.name + ' | Stack: ' + (testErr.stack||'').substring(0,100);
-    document.getElementById('analyzeBtn').disabled = false;
-    updateBtn();
-    return;
-  }
+  document.getElementById('stepsPanel').style.display = 'none';
+  setMsg('CRL WIRD GELADEN...');
 
-  // Compress all images first
-  let compressedImgs;
+  // Step 1: load CRL
+  let crlContent = 'Kostüm: ' + selectedName + ', CRL: ' + selectedUrl;
   try {
-    compressedImgs = await Promise.all(images.map(img => compressImage(img.data, img.type)));
+    const d1 = await callApi({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 2000,
+      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+      messages: [{ role: 'user', content: 'Fetch and list ALL required costume components from this 501st Legion CRL page: ' + selectedUrl + '\nReturn only section names and bullet requirements. No intro.' }]
+    });
+    if (d1.content) {
+      crlContent = d1.content.map(function(b) { return b.text || ''; }).filter(Boolean).join('\n');
+    }
+    setMsg('KOSTÜM WIRD ANALYSIERT...');
   } catch(e) {
-    showError('Fehler beim Verarbeiten der Bilder: ' + e.message);
-    return;
+    setMsg('ANALYSE LÄUFT...');
   }
 
-  // Step 1: fetch CRL
-  let crlContent = `Kostüm: ${selected.name}, URL: ${selected.url}`;
+  // Step 2: compress images
+  setMsg('BILDER WERDEN KOMPRIMIERT...');
+  const compressedImgs = [];
+  for (let i = 0; i < images.length; i++) {
+    try {
+      const compressed = await new Promise(function(resolve) {
+        const img = new Image();
+        img.onload = function() {
+          const MAX = 800;
+          let w = img.width, h = img.height;
+          if (w > MAX || h > MAX) {
+            if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+            else { w = Math.round(w * MAX / h); h = MAX; }
+          }
+          const c = document.createElement('canvas');
+          c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve({ data: c.toDataURL('image/jpeg', 0.75), type: 'image/jpeg' });
+        };
+        img.onerror = function() { resolve({ data: images[i].data, type: images[i].type }); };
+        img.src = images[i].data;
+      });
+      compressedImgs.push(compressed);
+    } catch(e) {
+      compressedImgs.push({ data: images[i].data, type: images[i].type });
+    }
+  }
+
+  setMsg('ANALYSIERE...');
+
+  // Step 3: analyze
   try {
-    const r = await fetch('/api/analyze', { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:2000,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        messages:[{role:'user',content:`Fetch and list ALL required costume components from this 501st CRL page: ${selected.url}\nReturn only section names and bullet-point requirements. No intro.`}]
-      })
+    const imgContent = compressedImgs.map(function(img) {
+      return { type: 'image', source: { type: 'base64', media_type: img.type, data: img.data.split(',')[1] } };
     });
-    const d = await r.json();
-    if (d.content) crlContent = d.content.map(b=>b.text||'').filter(Boolean).join('\n');
-    setLoad('KOSTÜM WIRD ANALYSIERT...');
-  } catch { setLoad('ANALYSE LÄUFT...'); }
+    imgContent.push({ type: 'text', text: 'Kostüm: ' + selectedName + '\n\nCRL:\n' + crlContent + '\n\nAnalysiere jede Anforderung konkret.' });
 
-  // Step 2: analyze photos
-  const imgs = compressedImgs.map(img => ({type:'image',source:{type:'base64',media_type:img.type,data:img.data.split(',')[1]}}));
-  try {
-    const r = await fetch('/api/analyze', { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514', max_tokens:4000,
-        system:`Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen.
-Antworte NUR mit validem JSON ohne Markdown-Backticks:
-{"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}`,
-        messages:[{role:'user',content:[...imgs,{type:'text',text:`Kostüm: ${selected.name}\n\nCRL:\n${crlContent}\n\n${extra?'Zusatzinfo: '+extra:''}\n\nAnalysiere jede Anforderung konkret.`}]}]
-      })
+    const d2 = await callApi({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 4000,
+      system: 'Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen. Antworte NUR mit validem JSON ohne Markdown: {"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}',
+      messages: [{ role: 'user', content: imgContent }]
     });
-    const d = await r.json();
-    if (d.error) throw new Error(d.error.type+': '+d.error.message);
 
-    // Show raw API response for debugging
-    const raw = (d.content||[]).map(b=>b.text||'').join('\n');
-    document.getElementById('rawBox').style.display='block';
-    document.getElementById('rawBox').textContent = '=== API RESPONSE ===\n' + JSON.stringify(d, null, 2).substring(0, 500) + '\n\n=== RAW TEXT ===\n' + raw.substring(0, 500);
+    if (d2.error) { showError('API Fehler: ' + d2.error.type + ' – ' + d2.error.message); return; }
 
+    const raw = (d2.content || []).map(function(b) { return b.text || ''; }).join('\n');
     document.getElementById('loading').classList.remove('show');
     document.getElementById('results').style.display = 'block';
+
     try {
-      const cleaned = raw.replace(/```json|```/g,'').trim();
-      const s=cleaned.indexOf('{'), e=cleaned.lastIndexOf('}');
-      if (s===-1) throw new Error('Kein JSON gefunden in: ' + cleaned.substring(0,100));
-      renderResult(JSON.parse(cleaned.substring(s,e+1)));
-    } catch {
-      document.getElementById('rawBox').style.display='block';
-      document.getElementById('rawBox').textContent=raw;
-      renderFallback();
+      const cleaned = raw.replace(/```json|```/g, '').trim();
+      const s = cleaned.indexOf('{');
+      const e = cleaned.lastIndexOf('}');
+      if (s === -1) throw new Error('Kein JSON');
+      renderResult(JSON.parse(cleaned.substring(s, e + 1)));
+    } catch(pe) {
+      document.getElementById('rawBox').style.display = 'block';
+      document.getElementById('rawBox').textContent = raw;
+      document.getElementById('scoreNum').textContent = '?';
+      document.getElementById('vtitle').textContent = 'Analyse abgeschlossen';
+      document.getElementById('vtext').textContent = 'Ergebnis als Rohdaten:';
     }
-  } catch(err) {
-    document.getElementById('loading').classList.remove('show');
-    document.getElementById('errorBox').style.display='block';
-    document.getElementById('errorBox').textContent='FEHLER: '+err.message;
+  } catch(e) {
+    showError('FEHLER: ' + e.message);
   }
-  document.getElementById('analyzeBtn').disabled=false;
+
+  document.getElementById('analyzeBtn').disabled = false;
   updateBtn();
 }
 
-function setLoad(t) { document.getElementById('loadText').textContent=t; }
-
-function showError(msg) {
-  document.getElementById('loading').classList.remove('show');
-  document.getElementById('errorBox').style.display='block';
-  document.getElementById('errorBox').textContent = msg;
-  document.getElementById('analyzeBtn').disabled=false;
-  updateBtn();
-}
-
-function scoreColor(s) { return s>=80?'#22cc66':s>=50?'#e8c050':'#cc0000'; }
+function scoreColor(s) { return s >= 80 ? '#22cc66' : s >= 50 ? '#e8c050' : '#cc0000'; }
 
 function renderResult(j) {
-  const sc=document.getElementById('scoreCircle'), sn=document.getElementById('scoreNum');
-  sn.textContent=j.score||0;
-  const c=scoreColor(j.score||0);
-  sc.style.color=c; sc.style.boxShadow=`0 0 20px ${c}33`;
-  const tag=document.getElementById('verdictTag');
-  if (j.verdict?.includes('READY')) { tag.className='verdict-tag tag-ok'; tag.textContent='✓ READY FOR APPROVAL'; }
-  else if (j.verdict?.includes('NEEDS')) { tag.className='verdict-tag tag-warn'; tag.textContent='⚠ NEEDS WORK'; }
-  else { tag.className='verdict-tag tag-fail'; tag.textContent='✗ NOT APPROVABLE'; }
-  document.getElementById('verdictTitle').textContent=j.verdictTitle||'';
-  document.getElementById('verdictText').textContent=j.verdictText||'';
-  const list=document.getElementById('reqList'); list.innerHTML='';
-  (j.sections||[]).forEach(sec => {
-    const t=document.createElement('div'); t.className='req-sec-title'; t.textContent='► '+sec.name; list.appendChild(t);
-    (sec.items||[]).forEach(item => {
-      const row=document.createElement('div'); row.className='req-item';
-      const ic={'ok':['icon-ok','✓'],'fail':['icon-fail','✗'],'warn':['icon-warn','?']}[item.status]||['icon-warn','?'];
-      row.innerHTML=`<div class="req-icon ${ic[0]}">${ic[1]}</div><div><div class="req-req">${item.requirement||''}</div>${item.comment?`<div class="req-comment">${item.comment}</div>`:''}</div>`;
-      list.appendChild(row);
+  const sc = document.getElementById('scoreCircle');
+  const sn = document.getElementById('scoreNum');
+  const score = j.score || 0;
+  const c = scoreColor(score);
+  sn.textContent = score;
+  sc.style.color = c;
+  sc.style.boxShadow = '0 0 20px ' + c + '44';
+
+  const tag = document.getElementById('vtag');
+  if (j.verdict && j.verdict.includes('READY')) { tag.className = 'vtag ok'; tag.textContent = '✓ READY FOR APPROVAL'; }
+  else if (j.verdict && j.verdict.includes('NEEDS')) { tag.className = 'vtag warn'; tag.textContent = '⚠ NEEDS WORK'; }
+  else { tag.className = 'vtag fail'; tag.textContent = '✗ NOT APPROVABLE'; }
+
+  document.getElementById('vtitle').textContent = j.verdictTitle || '';
+  document.getElementById('vtext').textContent = j.verdictText || '';
+
+  const list = document.getElementById('reqList');
+  list.innerHTML = '';
+  (j.sections || []).forEach(function(sec) {
+    const t = document.createElement('div'); t.className = 'sec-title'; t.textContent = '► ' + sec.name; list.appendChild(t);
+    (sec.items || []).forEach(function(item) {
+      const row = document.createElement('div'); row.className = 'req-item';
+      const ic = document.createElement('div');
+      ic.className = 'req-ic ' + ({ ok: 'ic-ok', fail: 'ic-fail', warn: 'ic-warn' }[item.status] || 'ic-warn');
+      ic.textContent = { ok: '✓', fail: '✗', warn: '?' }[item.status] || '?';
+      const txt = document.createElement('div'); txt.className = 'req-text';
+      txt.innerHTML = '<div class="req-r">' + (item.requirement || '') + '</div>' + (item.comment ? '<div class="req-c">' + item.comment + '</div>' : '');
+      row.appendChild(ic); row.appendChild(txt); list.appendChild(row);
     });
   });
-  const steps=j.nextSteps||[];
-  if (steps.length) {
-    document.getElementById('nextSteps').style.display='block';
-    const sl=document.getElementById('stepsList'); sl.innerHTML='';
-    steps.forEach((s,i) => { const d=document.createElement('div'); d.className='step'; d.innerHTML=`<span class="step-num">0${i+1}</span>${s}`; sl.appendChild(d); });
-  }
-}
 
-function renderFallback() {
-  document.getElementById('scoreNum').textContent='?';
-  document.getElementById('verdictTitle').textContent='Analyse abgeschlossen';
-  document.getElementById('verdictText').textContent='Siehe Rohdaten unten.';
+  const steps = j.nextSteps || [];
+  if (steps.length) {
+    document.getElementById('stepsPanel').style.display = 'block';
+    const sl = document.getElementById('stepsList');
+    sl.innerHTML = '';
+    steps.forEach(function(s, i) {
+      const d = document.createElement('div'); d.className = 'step-item';
+      d.innerHTML = '<span class="step-n">0' + (i + 1) + '</span>' + s;
+      sl.appendChild(d);
+    });
+  }
 }
 </script>
 </body>
