@@ -216,7 +216,7 @@ input[type=text]::placeholder{color:var(--dim)}
         <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)">
         <div class="upload-icon">📸</div>
         <div class="upload-title">TIPPEN ODER ABLEGEN</div>
-        <div class="upload-sub">JPG · PNG · WEBP · Mehrere möglich</div>
+        <div class="upload-sub">JPG · PNG · WEBP · Max. 2 Fotos</div>
       </div>
       <div class="img-grid" id="imgGrid"></div>
       <div class="img-count" id="imgCount"></div>
@@ -284,6 +284,10 @@ function handleFiles(files) {
     if (!f.type.startsWith('image/')) return;
     const reader = new FileReader();
     reader.onload = function(e) {
+      if (images.length >= 2) {
+        alert('Maximal 2 Fotos erlaubt. Bitte wähle die wichtigsten 2 Aufnahmen (z.B. Vorne und Hinten).');
+        return;
+      }
       images.push({ data: e.target.result, type: f.type, name: f.name });
       renderImages();
       updateBtn();
@@ -363,7 +367,7 @@ async function analyze() {
       const compressed = await new Promise(function(resolve) {
         const img = new Image();
         img.onload = function() {
-          const MAX = 600;
+          const MAX = 400;
           let w = img.width, h = img.height;
           if (w > MAX || h > MAX) {
             if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
@@ -372,7 +376,7 @@ async function analyze() {
           const c = document.createElement('canvas');
           c.width = w; c.height = h;
           c.getContext('2d').drawImage(img, 0, 0, w, h);
-          resolve({ data: c.toDataURL('image/jpeg', 0.65), type: 'image/jpeg' });
+          resolve({ data: c.toDataURL('image/jpeg', 0.5), type: 'image/jpeg' });
         };
         img.onerror = function() { resolve({ data: images[i].data, type: images[i].type }); };
         img.src = images[i].data;
