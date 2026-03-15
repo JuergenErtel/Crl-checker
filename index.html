@@ -485,21 +485,26 @@ async function analyze() {
   document.getElementById('errorBox').style.display = 'none';
   document.getElementById('rawBox').style.display = 'none';
   setLoad('BILDER WERDEN VERARBEITET...');
-  // DEBUG: test without images first
+  // DEBUG: test basic fetch
   try {
-    const testFetch = await fetch('/api/analyze', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:10, messages:[{role:'user',content:'hi'}]})
+    var testBody = {};
+    testBody.model = 'claude-sonnet-4-20250514';
+    testBody.max_tokens = 10;
+    testBody.messages = [{role:'user',content:'hi'}];
+    var testStr = JSON.stringify(testBody);
+    var testFetch = await fetch('/api/analyze', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: testStr
     });
-    const testData = await testFetch.json();
-    document.getElementById('errorBox').style.display='block';
-    document.getElementById('errorBox').textContent = 'API TEST OK: ' + JSON.stringify(testData).substring(0,100);
+    var testData = await testFetch.json();
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorBox').textContent = 'API TEST OK: ' + JSON.stringify(testData).substring(0,150);
   } catch(testErr) {
     document.getElementById('loading').classList.remove('show');
-    document.getElementById('errorBox').style.display='block';
-    document.getElementById('errorBox').textContent = 'API TEST FEHLER: ' + testErr.message + ' | ' + testErr.name;
-    document.getElementById('analyzeBtn').disabled=false;
+    document.getElementById('errorBox').style.display = 'block';
+    document.getElementById('errorBox').textContent = 'API TEST FEHLER: ' + testErr.message + ' | ' + testErr.name + ' | Stack: ' + (testErr.stack||'').substring(0,100);
+    document.getElementById('analyzeBtn').disabled = false;
     updateBtn();
     return;
   }
