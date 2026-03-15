@@ -351,22 +351,9 @@ async function analyze() {
   document.getElementById('stepsPanel').style.display = 'none';
   setMsg('CRL WIRD GELADEN...');
 
-  // Step 1: load CRL
-  let crlContent = 'Kostüm: ' + selectedName + ', CRL: ' + selectedUrl;
-  try {
-    const d1 = await callApi({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      messages: [{ role: 'user', content: 'Fetch and list ALL required costume components from this 501st Legion CRL page: ' + selectedUrl + '\nReturn only section names and bullet requirements. No intro.' }]
-    });
-    if (d1.content) {
-      crlContent = d1.content.map(function(b) { return b.text || ''; }).filter(Boolean).join('\n');
-    }
-    setMsg('KOSTÜM WIRD ANALYSIERT...');
-  } catch(e) {
-    setMsg('ANALYSE LÄUFT...');
-  }
+  // Step 1: use costume name directly, no separate CRL fetch
+  var crlContent = 'Kostüm: ' + selectedName + '\nCRL URL: ' + selectedUrl;
+  setMsg('KOSTÜM WIRD ANALYSIERT...');
 
   // Step 2: compress images
   setMsg('BILDER WERDEN KOMPRIMIERT...');
@@ -407,7 +394,7 @@ async function analyze() {
 
     const d2 = await callApi({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 4000,
+      max_tokens: 2000,
       system: 'Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen. Antworte NUR mit validem JSON ohne Markdown: {"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}',
       messages: [{ role: 'user', content: imgContent }]
     });
