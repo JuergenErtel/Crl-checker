@@ -495,27 +495,32 @@ async function analyze() {
     setLoad('KOSTÜM WIRD ANALYSIERT...');
   } catch { setLoad('ANALYSE LÄUFT...'); }
 
-  // Step 2: analyze photos
+ // Step 2: analyze photos
   const imgs = images.map(img => ({type:'image',source:{type:'base64',media_type:img.type,data:img.data.split(',')[1]}}));
   try {
     const r = await fetch('/api/analyze', { method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         model:'claude-sonnet-4-20250514', max_tokens:4000,
         system:`Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen.
-Antworte NUR mit validem JSON ohne Markdown:
+Antworte NUR mit validem JSON ohne Markdown-Backticks:
 {"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}`,
         messages:[{role:'user',content:[...imgs,{type:'text',text:`Kostüm: ${selected.name}\n\nCRL:\n${crlContent}\n\n${extra?'Zusatzinfo: '+extra:''}\n\nAnalysiere jede Anforderung konkret.`}]}]
       })
     });
     const d = await r.json();
     if (d.error) throw new Error(d.error.type+': '+d.error.message);
+
     const raw = (d.content||[]).map(b=>b.text||'').join('\n');
+    document.getElementById('rawBox').style.display='block';
+    document.getElementById('rawBox').textContent = '=== API RESPONSE ===\n' + JSON.stringify(d, null, 2).substring(0, 500) + '\n\n=== RAW TEXT ===\n' + raw.substring(0, 500);
+
     document.getElementById('loading').classList.remove('show');
     document.getElementById('results').style.display = 'block';
     try {
-      const s=raw.indexOf('{'), e=raw.lastIndexOf('}');
-      if (s===-1) throw new Error('Kein JSON');
-      renderResult(JSON.parse(raw.substring(s,e+1)));
+      const cleaned = raw.replace(/```json|```/g,'').trim();
+      const s=cleaned.indexOf('{'), e=cleaned.lastIndexOf('}');
+      if (s===-1) throw new Error('Kein JSON gefunden in: ' + cleaned.substring(0,100));
+      renderResult(JSON.parse(cleaned.substring(s,e+1)));
     } catch {
       document.getElementById('rawBox').style.display='block';
       document.getElementById('rawBox').textContent=raw;
