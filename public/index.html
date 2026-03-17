@@ -20,14 +20,9 @@ h1 em{font-style:normal;color:var(--red)}
 .step{font-family:'Orbitron',monospace;font-size:9px;font-weight:700;color:var(--red);background:rgba(204,0,0,.1);border:1px solid rgba(204,0,0,.2);padding:3px 8px}
 .card-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:2px}
 .card-body{padding:16px}
-
-/* SELECT */
 select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--borderb);border-radius:4px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:500;padding:13px 14px;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a88' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 select:focus{border-color:var(--red);box-shadow:0 0 0 2px rgba(204,0,0,.12)}
-select option{background:#0f1219;color:#fff;padding:8px}
-optgroup{color:var(--red);font-family:'Orbitron',monospace;font-size:11px}
-
-/* UPLOAD */
+select option{background:#0f1219;color:#fff}
 .upload-zone{border:2px dashed var(--borderb);border-radius:4px;padding:24px;text-align:center;cursor:pointer;position:relative;transition:all .2s}
 .upload-zone:hover{border-color:var(--red);background:rgba(204,0,0,.04)}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
@@ -37,28 +32,20 @@ optgroup{color:var(--red);font-family:'Orbitron',monospace;font-size:11px}
 .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-top:12px}
 .img-thumb{position:relative;aspect-ratio:1;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--panel)}
 .img-thumb img{width:100%;height:100%;object-fit:cover}
-.img-thumb button{position:absolute;top:4px;right:4px;width:26px;height:26px;background:rgba(204,0,0,.9);border:none;border-radius:3px;color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.img-thumb button{position:absolute;top:4px;right:4px;width:26px;height:26px;background:rgba(204,0,0,.9);border:none;border-radius:3px;color:#fff;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .img-count{font-size:11px;color:var(--dim);margin-top:8px;letter-spacing:1px}
-
-/* TEXT INPUT */
 input[type=text]{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;padding:12px 14px;outline:none}
 input[type=text]:focus{border-color:var(--red)}
 input[type=text]::placeholder{color:var(--dim)}
-
-/* BTN */
 .btn{width:100%;background:var(--red);color:#fff;border:none;font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:4px;padding:17px;cursor:pointer;border-radius:3px;margin-top:14px;transition:all .2s}
 .btn:hover{background:#ff2222;box-shadow:0 0 30px rgba(204,0,0,.4)}
 .btn:disabled{background:var(--border);color:var(--dim);cursor:not-allowed;box-shadow:none}
-
-/* LOADING */
 #loading{display:none;text-align:center;padding:36px 20px}
 #loading.show{display:block}
 .bar{width:180px;height:2px;background:var(--border);margin:14px auto;position:relative;overflow:hidden;border-radius:1px}
 .bar::after{content:'';position:absolute;height:100%;width:40%;background:var(--red);animation:scan 1.2s linear infinite;box-shadow:0 0 8px var(--red)}
 @keyframes scan{0%{left:-40%}100%{left:140%}}
 .load-msg{font-size:11px;color:var(--dim);letter-spacing:3px}
-
-/* RESULTS */
 #results{display:none;margin-top:20px;animation:fadein .3s ease}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .score-row{display:flex;align-items:center;gap:18px;padding:18px;background:var(--panel);border:1px solid var(--border);border-radius:6px;margin-bottom:10px}
@@ -72,7 +59,6 @@ input[type=text]::placeholder{color:var(--dim)}
 .vtitle{font-family:'Orbitron',monospace;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
 .vtext{font-size:13px;color:var(--dim);line-height:1.6}
 .req-panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px}
-.req-panel .card-head{border-top:none}
 .sec-title{padding:8px 16px;font-family:'Orbitron',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);background:rgba(232,192,80,.04);border-bottom:1px solid var(--border)}
 .req-item{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start}
 .req-item:last-child{border-bottom:none}
@@ -80,8 +66,8 @@ input[type=text]::placeholder{color:var(--dim)}
 .ic-ok{color:var(--green);border-color:rgba(34,204,102,.5);background:rgba(34,204,102,.1)}
 .ic-fail{color:#ff4444;border-color:rgba(204,0,0,.5);background:rgba(204,0,0,.1)}
 .ic-warn{color:var(--accent);border-color:rgba(232,192,80,.5);background:rgba(232,192,80,.1)}
-.req-text .req-r{font-size:13px;font-weight:600;line-height:1.5;margin-bottom:2px}
-.req-text .req-c{font-size:12px;color:var(--dim);line-height:1.5;font-style:italic}
+.req-r{font-size:13px;font-weight:600;line-height:1.5;margin-bottom:2px}
+.req-c{font-size:12px;color:var(--dim);line-height:1.5;font-style:italic}
 .steps{background:rgba(232,192,80,.04);border:1px solid rgba(232,192,80,.2);border-radius:6px;padding:18px;display:none}
 .steps-title{font-family:'Orbitron',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:12px}
 .step-item{padding:7px 0 7px 32px;position:relative;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -96,119 +82,365 @@ input[type=text]::placeholder{color:var(--dim)}
   <div class="logo"><span>501st</span> CRL CHECKER</div>
   <div style="font-size:11px;color:var(--dim)">COSTUME ANALYSIS</div>
 </header>
-
 <main>
   <h1>501st <em>CRL</em> Analyzer</h1>
   <p class="sub">Kostüm auswählen · Fotos hochladen · KI analysiert gegen offizielle CRL</p>
 
-  <!-- Step 1 -->
   <div class="card">
     <div class="card-head"><span class="step">01</span><span class="card-title">KOSTÜM AUSWÄHLEN</span></div>
     <div class="card-body">
       <select id="costumeSelect" onchange="onSelectChange()">
         <option value="">— Kostüm wählen —</option>
+        <optgroup label="AR: ARC Trooper">
+          <option value="https://crls.501st.com/ctd/arc-captain-fordo-micro-series-phase-i|ARC Trooper (CW Phase 1): Fordo">ARC Trooper (CW Phase 1): Fordo</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-alpha|ARC Trooper (EU Phase 1): Alpha">ARC Trooper (EU Phase 1): Alpha</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-standard|ARC Trooper (EU Phase 1): Standard">ARC Trooper (EU Phase 1): Standard Trooper</option>
+          <option value="https://crls.501st.com/ctd/arc-fives-phase-i-realistic|ARC Trooper (EU Phase 1): Fives Realistic">ARC Trooper (EU Phase 1): Fives - Realistic</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-null-class|ARC Trooper (EU Phase 1): Null Class">ARC Trooper (EU Phase 1): Null Class</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-heavy-gunner-beta|ARC Trooper (EU Phase 2): Beta Heavy Gunner">ARC Trooper (EU Phase 2): Beta - Heavy Gunner</option>
+          <option value="https://crls.501st.com/ctd/arc-echo-phase-i-realistic|ARC Trooper (EU Phase 2): Echo Realistic">ARC Trooper (EU Phase 2): Echo - Realistic</option>
+          <option value="https://crls.501st.com/ctd/arc-jesse-phase-ii-realistic|ARC Trooper (EU Phase 2): Jesse Realistic">ARC Trooper (EU Phase 2): Jesse - Realistic</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-blitz|ARC Trooper (TCW Phase 1): Blitz">ARC Trooper (TCW Phase 1): Blitz</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-colt|ARC Trooper (TCW Phase 1): Colt">ARC Trooper (TCW Phase 1): Colt</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-echo|ARC Trooper (TCW Phase 1): Echo">ARC Trooper (TCW Phase 1): Echo</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-fives-phase-i|ARC Trooper (TCW Phase 1): Fives">ARC Trooper (TCW Phase 1): Fives</option>
+          <option value="https://crls.501st.com/ctd/advanced-recon-commando-hammer|ARC Trooper (TCW Phase 1): Hammer">ARC Trooper (TCW Phase 1): Hammer</option>
+          <option value="https://crls.501st.com/ctd/arc-trooper-commander-havoc|ARC Trooper (TCW Phase 1): Havoc">ARC Trooper (TCW Phase 1): Havoc</option>
+          <option value="https://crls.501st.com/ctd/arc-trooper-phase-ii-fives|ARC Trooper (TCW Phase 2): Fives">ARC Trooper (TCW Phase 2): Fives</option>
+          <option value="https://crls.501st.com/ctd/arc-trooper-phase-ii-animated-jesse|ARC Trooper (TCW Phase 2): Jesse">ARC Trooper (TCW Phase 2): Jesse</option>
+        </optgroup>
         <optgroup label="BH: Bounty Hunter">
-          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-original-trilogy-hero-version|Boba Fett: ROTJ Hero">Boba Fett: ROTJ Hero</option>
-          <option value="https://crls.501st.com/bhg/boba-fett-empire-strikes-back|Boba Fett: ESB">Boba Fett: The Empire Strikes Back</option>
-          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-special-edition|Boba Fett: ROTJ SE">Boba Fett: ROTJ Special Edition</option>
-          <option value="https://crls.501st.com/bhg/boba-fett-book-of-boba-fett|Boba Fett: BoBF">Boba Fett: The Book of Boba Fett</option>
-          <option value="https://crls.501st.com/bhg/jango-fett|Jango Fett: AOTC">Jango Fett: AOTC</option>
-          <option value="https://crls.501st.com/bhg/din-djarin-beskar|Din Djarin: Beskar S1">Din Djarin: Beskar (Season 1)</option>
-          <option value="https://crls.501st.com/bhg/din-djarin-season-1-pre-beskar|Din Djarin: Pre-Beskar">Din Djarin: Pre-Beskar</option>
-          <option value="https://crls.501st.com/bhg/din-djarin-the-book-of-boba-fett|Din Djarin: BoBF">Din Djarin: The Book Of Boba Fett</option>
           <option value="https://crls.501st.com/bhg/4-lom|4-LOM">4-LOM</option>
+          <option value="https://crls.501st.com/bhg/aurra-sing-the-phantom-menace|Aurra Sing TPM">Aurra Sing: The Phantom Menace</option>
+          <option value="https://crls.501st.com/bhg/black-krrsantan|Black Krrsantan">Black Krrsantan</option>
+          <option value="https://crls.501st.com/bhg/black-krrsantan-the-book-of-boba-fett|Black Krrsantan BoBF">Black Krrsantan: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-empire-strikes-back|Boba Fett ESB">Boba Fett: The Empire Strikes Back</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-original-trilogy-hero-version|Boba Fett ROTJ Hero">Boba Fett: ROTJ Hero</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-return-of-the-jedi-special-edition|Boba Fett ROTJ SE">Boba Fett: ROTJ Special Edition</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-book-of-boba-fett|Boba Fett BoBF">Boba Fett: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/boba-fett-repainted-armor-the-mandalorian-s2|Boba Fett Mandalorian S2">Boba Fett: Repainted Armour - The Mandalorian S2</option>
           <option value="https://crls.501st.com/bhg/bossk|Bossk ESB">Bossk - ESB</option>
           <option value="https://crls.501st.com/bhg/boushh|Boushh">Boushh</option>
           <option value="https://crls.501st.com/bhg/cad-bane|Cad Bane">Cad Bane</option>
+          <option value="https://crls.501st.com/bhg/cad-bane-denal-armor|Cad Bane Denal">Cad Bane, Denal Armor</option>
+          <option value="https://crls.501st.com/bhg/cad-bane-the-bad-batch|Cad Bane Bad Batch">Cad Bane: The Bad Batch</option>
           <option value="https://crls.501st.com/bhg/cad-bane-the-book-of-boba-fett|Cad Bane BoBF">Cad Bane: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/deliah-blue|Deliah Blue">Deliah Blue</option>
           <option value="https://crls.501st.com/bhg/dengar|Dengar">Dengar</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-beskar|Din Djarin Beskar S1">Din Djarin: Beskar (Season 1)</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-season-1-pre-beskar|Din Djarin Pre-Beskar">Din Djarin: Pre-Beskar</option>
+          <option value="https://crls.501st.com/bhg/din-djarin-the-book-of-boba-fett|Din Djarin BoBF">Din Djarin: The Book Of Boba Fett</option>
+          <option value="https://crls.501st.com/bhg/embo|Embo">Embo</option>
           <option value="https://crls.501st.com/bhg/fennec-shand|Fennec Shand">Fennec Shand</option>
           <option value="https://crls.501st.com/bhg/greedo-a-new-hope|Greedo ANH">Greedo: ANH Hero</option>
+          <option value="https://crls.501st.com/bhg/jango-fett|Jango Fett AOTC">Jango Fett: AOTC</option>
+          <option value="https://crls.501st.com/bhg/jodo-kast|Jodo Kast">Jodo Kast</option>
+          <option value="https://crls.501st.com/bhg/montross-star-wars-open-seasons|Montross">Montross</option>
+          <option value="https://crls.501st.com/bhg/shae-vizla|Shae Vizla">Shae Vizla</option>
+          <option value="https://crls.501st.com/bhg/tam-posla|Tam Posla">Tam Posla</option>
           <option value="https://crls.501st.com/bhg/zam-wesell|Zam Wesell">Zam Wesell</option>
           <option value="https://crls.501st.com/bhg/zuckuss|Zuckuss">Zuckuss</option>
+          <option value="https://crls.501st.com/tfe/asajj-ventress-bounty-hunter|Asajj Ventress BH">Asajj Ventress: Bounty Hunter</option>
+          <option value="https://crls.501st.com/tfe/asajj-ventress-harbinger|Asajj Ventress Harbinger">Asajj Ventress: Harbinger</option>
         </optgroup>
-        <optgroup label="SL: Sith Lord">
-          <option value="https://crls.501st.com/sld/darth-vader-a-new-hope|Darth Vader ANH">Darth Vader: ANH</option>
-          <option value="https://crls.501st.com/sld/darth-vader-esb|Darth Vader ESB">Darth Vader: ESB</option>
-          <option value="https://crls.501st.com/sld/darth-vader-revenge-of-the-sith|Darth Vader ROTS">Darth Vader: ROTS</option>
-          <option value="https://crls.501st.com/sld/darth-vader-return-of-the-jedi|Darth Vader ROTJ">Darth Vader: ROTJ</option>
-          <option value="https://crls.501st.com/sld/darth-maul-the-phantom-menace|Darth Maul TPM">Darth Maul: The Phantom Menace</option>
-          <option value="https://crls.501st.com/sld/darth-maul-solo|Darth Maul Solo">Darth Maul: Solo</option>
-          <option value="https://crls.501st.com/sld/count-dooku-attack-of-the-clones|Count Dooku AOTC">Count Dooku: AOTC</option>
-          <option value="https://crls.501st.com/sld/darth-sidious-revenge-of-the-sith|Darth Sidious ROTS">Darth Sidious: ROTS</option>
+        <optgroup label="CB: Kashyyyk Trooper">
+          <option value="https://crls.501st.com/pf/kashyyyk-officer-battlefront-2|Kashyyyk Officer BF2">Kashyyyk Officer Battlefront 2</option>
+          <option value="https://crls.501st.com/pf/kashyyyk-trooper|Kashyyyk Trooper ROTS">Kashyyyk Trooper: Revenge of the Sith</option>
+          <option value="https://crls.501st.com/pf/kashyyyk-trooper-white-variant|Kashyyyk Trooper Star Tours">Kashyyyk Trooper: Star Tours</option>
+        </optgroup>
+        <optgroup label="CC: Clone Commander">
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-1|Rex TCW Phase 1">Clone Captain Rex (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-2|Rex TCW Phase 2">Clone Captain Rex (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-i-realistic|Rex EU Phase 1 Realistic">Clone Captain Rex (EU Phase 1) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/captain-rex-phase-ii-realistic|Rex EU Phase 2 Realistic">Clone Captain Rex (EU Phase 2) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-i-animated|Cody TCW Phase 1">Commander Cody (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-ii-animated|Cody TCW Phase 2">Commander Cody (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-ii-season-7|Cody TCW Phase 2 Season 7">Commander Cody (TCW Phase 2): Season 7</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-ii|Cody ROTS Phase 2">Commander Cody (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-phase-i|Cody EU Phase 1 Realistic">Commander Cody (EU Phase 1) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-cody-imperial|Cody Imperial BB">Commander Cody (Imperial) - Bad Batch</option>
+          <option value="https://crls.501st.com/ctd/commander-bly|Bly ROTS Phase 2">Commander Bly (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-bly-phase-i|Bly TCW Phase 1">Commander Bly (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/commander-bly-realistic-phase-i|Bly EU Phase 1 Realistic">Commander Bly (EU Phase 1) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-fox-phase-i|Fox TCW Phase 1">Commander Fox (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/commander-fox-phase-ii|Fox TCW Phase 2">Commander Fox (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-fox-phase-i-realistic|Fox EU Phase 1 Realistic">Commander Fox (EU Phase 1) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-gree-phase-i|Gree TCW Phase 1">Commander Gree (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/commander-gree-phase-ii|Gree ROTS Phase 2">Commander Gree (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-wolffe-season-2|Wolffe TCW S2">Commander Wolffe (TCW Phase 1 Season 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-wolffe-season-3|Wolffe TCW S3">Commander Wolffe (TCW Phase 1 Season 3)</option>
+          <option value="https://crls.501st.com/ctd/clone-commander-wolffe-season-4|Wolffe TCW S4">Commander Wolffe (TCW Phase 2 Season 4)</option>
+          <option value="https://crls.501st.com/ctd/commander-wolffe-phase-i-realistic|Wolffe EU Phase 1 Realistic">Commander Wolffe (EU Phase 1) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-wolffe-realistic-phase-ii|Wolffe EU Phase 2 Realistic">Commander Wolffe (EU Phase 2) - Realistic</option>
+          <option value="https://crls.501st.com/ctd/commander-thorn|Thorn TCW Phase 2">Commander Thorn (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-doom|Doom TCW Phase 2">Commander Doom (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-bacara|Bacara ROTS Phase 2">Commander Bacara (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-neyo|Neyo ROTS Phase 2">Commander Neyo (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-deviss|Deviss ROTS Phase 2">Commander Deviss (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/captain-howzer|Howzer Bad Batch">Commander Howzer (Bad Batch Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/commander-mayday|Mayday Bad Batch">Commander Mayday (Bad Batch Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/captain-keeli|Keeli TCW Phase 1">Captain Keeli (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/captain-lock-phase-i|Lock TCW Phase 1">Captain Lock (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/captain-vaughn-phase-ii|Vaughn TCW Phase 2 S7">Captain Vaughn (TCW Phase 2 Season 7)</option>
+          <option value="https://crls.501st.com/ctd/captain-wilco|Wilco TCW Phase 2 S7">Captain Wilco (TCW Phase 2 Season 7)</option>
+          <option value="https://crls.501st.com/ctd/captain-rex-cold-weather-gear|Rex Cold Weather">Captain Rex (Cold Weather Gear)</option>
+        </optgroup>
+        <optgroup label="CP: Clone Pilot">
+          <option value="https://crls.501st.com/ctd/clone-pilot-aotc|Clone Pilot AOTC">Clone Pilot - AOTC</option>
+          <option value="https://crls.501st.com/ctd/arc-170-clone-pilot|ARC-170 Clone Pilot">ARC 170 Clone Pilot</option>
+          <option value="https://crls.501st.com/ctd/clone-pilot-axe|Clone Pilot Axe">Clone Pilot - Axe</option>
+          <option value="https://crls.501st.com/ctd/clone-pilot-broadside|Clone Pilot Broadside">Clone Pilot - Broadside</option>
+          <option value="https://crls.501st.com/ctd/clone-trooper-pilot-oddball|Clone Pilot Oddball">Clone Pilot (TCW Phase 1): Oddball</option>
+          <option value="https://crls.501st.com/ctd/clone-pilot-warthog-phase-1|Clone Pilot Warthog">Clone Pilot - Warthog Phase 1</option>
+          <option value="https://crls.501st.com/ctd/clone-stealth-pilot|Clone Stealth Pilot">Clone Stealth Pilot (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/shadow-squadron-pilot|Shadow Squadron Pilot">Shadow Squadron Pilot</option>
+        </optgroup>
+        <optgroup label="CT: Clone Trooper (ROTS)">
+          <option value="https://crls.501st.com/ctd/501st-clone-trooper|501st Battalion ROTS">501st Clone Trooper (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/212th-attack-battalion|212th Attack Battalion">212th Attack Battalion (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/327th-star-corps-trooper|327th Star Corps">327th Star Corps (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/187th-attack-battalion|187th Attack Battalion">187th Attack Battalion (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/442nd-siege-battalion|442nd Siege Battalion">442nd Siege Battalion (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/41st-elite-corps|41st Elite Corps">41st Elite Corps</option>
+          <option value="https://crls.501st.com/ctd/shock-trooper|Shock Trooper ROTS">Shock Trooper (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/clone-trooper-phase-ii|Standard Trooper ROTS">Clone Trooper Standard (ROTS Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/501st-trooper-non-saga-the-mandalorian|501st Trooper Mandalorian">501st Trooper - The Mandalorian</option>
+          <option value="https://crls.501st.com/ctd/clone-trooper-non-saga-grunt-the-mandalorian|Clone Trooper Grunt Mandalorian">Clone Trooper Grunt - The Mandalorian</option>
+        </optgroup>
+        <optgroup label="CT: Clone Trooper (TCW)">
+          <option value="https://crls.501st.com/ctd/332nd-division-clone-trooper|332nd Division TCW">332nd Division (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/501st-battalion-phase-ii|501st Battalion TCW">501st Battalion (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/501st-jet-trooper-season-7|501st Jet Trooper S7">501st Jet Trooper - Season 7</option>
+          <option value="https://crls.501st.com/ctd/shock-trooper-phase-ii|Shock Trooper TCW">Shock Trooper (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/standard-trooper-phase-ii-animated|Standard Trooper TCW">Standard Trooper (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/jesse-phase-ii|Jesse TCW Phase 2">Jesse (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/kix-phase-ii|Kix TCW Phase 2">Kix (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/hardcase-phase-ii|Hardcase TCW Phase 2">Hardcase (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/tup-phase-ii|Tup TCW Phase 2">Tup (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/dogma-phase-ii|Dogma TCW Phase 2">Dogma (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/waxer-phase-ii|Waxer TCW Phase 2">Waxer (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/boil-phase-ii|Boil TCW Phase 2">Boil (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/wolfpack-grunt-phase-ii|Wolfpack Grunt TCW">Wolfpack Grunt (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/332nd-clone-trooper-realistic-phase-2|332nd EU Realistic">332nd Division (EU Realistic Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/91st-recon-grunt-phase-ii|91st Recon TCW">91st Recon (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/kamino-security-grunt-phase-ii|Kamino Security Grunt">Kamino Security Grunt (TCW Phase 2)</option>
+        </optgroup>
+        <optgroup label="CX: Special Ops Clone Trooper">
+          <option value="https://crls.501st.com/ctd/arf-trooper|ARF Trooper Standard TCW">ARF Trooper Standard (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/arf-trooper-camo-deco|ARF Trooper Camo">ARF Trooper Camo Deco (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/ctd/arf-trooper-501st-battalion|ARF Trooper 501st TCW Phase 2">ARF Trooper 501st Battalion (TCW Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/212th-utapau-shadow-trooper|Utapau Shadow Trooper">Utapau Shadow Trooper (EU Phase 2)</option>
+          <option value="https://crls.501st.com/ctd/airborne-trooper-212th-parjai-squad|Airborne Trooper 212th">Airborne Trooper 212th Parjai Squad (ROTS)</option>
+          <option value="https://crls.501st.com/ctd/crosshair-the-bad-batch|Crosshair Bad Batch">Crosshair - The Bad Batch</option>
+          <option value="https://crls.501st.com/ctd/echo-the-bad-batch|Echo Bad Batch">Echo - The Bad Batch</option>
+          <option value="https://crls.501st.com/ctd/hunter-the-bad-batch|Hunter Bad Batch">Hunter - The Bad Batch</option>
+          <option value="https://crls.501st.com/ctd/tech-the-bad-batch|Tech Bad Batch">Tech - The Bad Batch</option>
+          <option value="https://crls.501st.com/ctd/wrecker-the-bad-batch|Wrecker Bad Batch">Wrecker - The Bad Batch</option>
+          <option value="https://crls.501st.com/acd/at-rt-driver|AT-RT Driver">AT-RT Driver</option>
+        </optgroup>
+        <optgroup label="DS: Dark Side Adept">
+          <option value="https://crls.501st.com/tfe/asajj-ventress-clone-wars|Asajj Ventress CW">Asajj Ventress: Clone Wars</option>
+          <option value="https://crls.501st.com/tfe/asajj-ventress-clone-wars-betrayed|Asajj Ventress CW Betrayed">Asajj Ventress: Clone Wars Betrayed</option>
+          <option value="https://crls.501st.com/tfe/asajj-ventress-nightsister|Asajj Ventress Nightsister">Asajj Ventress: Night Sister</option>
+          <option value="https://crls.501st.com/tfe/grand-inquisitor|Grand Inquisitor">Grand Inquisitor</option>
+          <option value="https://crls.501st.com/tfe/second-sister-jedi-fallen-order|Second Sister">Second Sister (Jedi Fallen Order)</option>
+          <option value="https://crls.501st.com/tfe/seventh-sister-star-wars-rebels|Seventh Sister">Seventh Sister (Rebels)</option>
+          <option value="https://crls.501st.com/tfe/third-sister-reva-obi-wan-kenobi|Third Sister Reva">Third Sister: Reva (Obi-Wan Kenobi)</option>
+          <option value="https://crls.501st.com/tfe/mara-jade-black-bodysuit|Mara Jade Black Bodysuit">Mara Jade: Black Bodysuit</option>
+          <option value="https://crls.501st.com/tfe/mara-jade-black-nebula|Mara Jade Black Nebula">Mara Jade: Black Nebula</option>
+          <option value="https://crls.501st.com/tfe/maris-brood|Maris Brood">Maris Brood</option>
+          <option value="https://crls.501st.com/tfe/savage-opress|Savage Opress">Savage Opress</option>
+          <option value="https://crls.501st.com/tfe/nightsisters-mother-talzin|Mother Talzin">Night Sisters: Mother Talzin</option>
+          <option value="https://crls.501st.com/tfe/nightsisters-dark-force-witch|Night Sister Dark Force Witch">Night Sisters: Dark Force Witch</option>
           <option value="https://crls.501st.com/sld/kylo-ren-the-force-awakens|Kylo Ren TFA">Kylo Ren: The Force Awakens</option>
           <option value="https://crls.501st.com/sld/kylo-ren-the-last-jedi|Kylo Ren TLJ">Kylo Ren: The Last Jedi</option>
           <option value="https://crls.501st.com/sld/kylo-ren-supreme-leader|Kylo Ren Supreme Leader">Kylo Ren: Supreme Leader</option>
+          <option value="https://crls.501st.com/sld/kylo-ren-the-rise-of-skywalker|Kylo Ren TROS">Kylo Ren: The Rise of Skywalker</option>
+          <option value="https://crls.501st.com/sld/kylo-ren-starkiller-base|Kylo Ren Starkiller">Kylo Ren: Starkiller Base</option>
+          <option value="https://crls.501st.com/sld/dark-rey|Dark Rey">Dark Rey</option>
+          <option value="https://crls.501st.com/sld/snoke-the-last-jedi|Snoke TLJ">Snoke: TLJ</option>
+          <option value="https://crls.501st.com/sld/baylan-skoll-ahsoka-season-1|Baylan Skoll Ahsoka">Baylan Skoll: Ahsoka (Season 1)</option>
+        </optgroup>
+        <optgroup label="DZ: Denizen">
+          <option value="https://crls.501st.com/kc/jawa|Jawa">Jawa</option>
+          <option value="https://crls.501st.com/kc/offworld-jawa|Offworld Jawa">Offworld Jawa</option>
+          <option value="https://crls.501st.com/kc/tatooine-jawa-the-mandalorian|Tatooine Jawa Mandalorian">Tatooine Jawa - The Mandalorian</option>
+          <option value="https://crls.501st.com/kc/tusken-raider|Tusken Raider ANH male">Tusken Raider: ANH (male)</option>
+          <option value="https://crls.501st.com/kc/tusken-raider-female|Tusken Raider AOTC female">Tusken Raider: AOTC (female)</option>
+          <option value="https://crls.501st.com/kc/male-tusken-raider-aotc|Tusken Raider AOTC male">Tusken Raider: AOTC (male)</option>
+          <option value="https://crls.501st.com/kc/male-tusken-the-mandalorian|Tusken Mandalorian male">Tusken (male): The Mandalorian</option>
+          <option value="https://crls.501st.com/kc/tusken-warrior-the-book-of-boba-fett|Tusken Warrior BoBF">Tusken Warrior: The Book of Boba Fett</option>
+          <option value="https://crls.501st.com/kc/tusken-chieftain-the-book-of-boba-fett|Tusken Chieftain BoBF">Tusken Chieftain: The Book Of Boba Fett</option>
+          <option value="https://crls.501st.com/kc/gamorrean-guard|Gamorrean Guard">Gamorrean Guard</option>
+          <option value="https://crls.501st.com/kc/bith-musician|Bith Musician">Bith Musician</option>
+          <option value="https://crls.501st.com/kc/malakili-rancor-keeper|Malakili Rancor Keeper">Malakili (Rancor Keeper)</option>
+          <option value="https://crls.501st.com/kc/rogue-bandit-the-mandalorian|Rogue Bandit Mandalorian">Rogue Bandit: The Mandalorian</option>
+          <option value="https://crls.501st.com/uw/bib-fortuna|Bib Fortuna">Bib Fortuna</option>
+          <option value="https://crls.501st.com/uw/bazine-netal|Bazine Netal">Bazine Netal</option>
+          <option value="https://crls.501st.com/uw/captain-ithano|Captain Ithano">Captain Ithano</option>
+          <option value="https://crls.501st.com/uw/doctor-cornelius-evazan|Dr Evazan">Doctor Cornelius Evazan</option>
+          <option value="https://crls.501st.com/uw/dryden-vos-crimson-dawn|Dryden Vos Crimson Dawn">Dryden Vos: Crimson Dawn</option>
+          <option value="https://crls.501st.com/uw/guavian-death-gang-soldier|Guavian Death Gang">Guavian Death Gang Soldier</option>
+          <option value="https://crls.501st.com/uw/hondo-ohnaka|Hondo Ohnaka">Hondo Ohnaka</option>
+          <option value="https://crls.501st.com/uw/hondo-ohnaka-imperial-era|Hondo Ohnaka Imperial">Hondo Ohnaka - Imperial Era</option>
+          <option value="https://crls.501st.com/uw/ponda-baba|Ponda Baba">Ponda Baba</option>
+          <option value="https://crls.501st.com/uw/pyke-syndicate-spice-runner|Pyke Syndicate">Pyke Syndicate: Spice Runner</option>
+          <option value="https://crls.501st.com/uw/qira-crimson-dawn|Qi'Ra Crimson Dawn">Qi'Ra: Crimson Dawn</option>
+          <option value="https://crls.501st.com/uw/qira-kessel-run|Qi'Ra Kessel Run">Qi'Ra: Kessel Run</option>
+          <option value="https://crls.501st.com/uw/tobias-beckett|Tobias Beckett">Tobias Beckett</option>
+          <option value="https://crls.501st.com/uw/unkar-plutt|Unkar Plutt">Unkar Plutt</option>
+          <option value="https://crls.501st.com/bf/wampa|Wampa">Wampa</option>
+          <option value="https://crls.501st.com/tfe/doctor-aphra-gray-jacket|Doctor Aphra Gray Jacket">Doctor Aphra: Gray Jacket</option>
+          <option value="https://crls.501st.com/tfe/doctor-aphra-red-vest-a|Doctor Aphra Red Vest A">Doctor Aphra: Red Vest A</option>
+          <option value="https://crls.501st.com/tfe/doctor-aphra-red-vest-b|Doctor Aphra Red Vest B">Doctor Aphra: Red Vest B</option>
+          <option value="https://crls.501st.com/uw/narkina-5-inmate|Narkina 5 Inmate">Narkina 5 - Inmate (Andor)</option>
+          <option value="https://crls.501st.com/uw/narkina-5-floor-manager|Narkina 5 Floor Manager">Narkina 5 - Floor Manager (Andor)</option>
+        </optgroup>
+        <optgroup label="GM: Galactic Marine">
+          <option value="https://crls.501st.com/bf/galactic-marine|Galactic Marine">Galactic Marine</option>
+        </optgroup>
+        <optgroup label="IC: Imperial Crew">
+          <option value="https://crls.501st.com/ioc/imperial-bridge-crew|Imperial Bridge Crew">Imperial Crew: Bridge Crew</option>
+          <option value="https://crls.501st.com/ioc/mechanical-crew|Imperial Mechanical Crew">Imperial Crew: Mechanical Crew</option>
+          <option value="https://crls.501st.com/ioc/imperial-scanning-crew|Imperial Scanning Crew">Imperial Crew: Scanning Crew</option>
+          <option value="https://crls.501st.com/ioc/first-order-crew-tlj|First Order Crew TLJ">First Order Crew: TLJ</option>
+          <option value="https://crls.501st.com/ioc/death-star-scientist-tarkin-initiative|Death Star Scientist">Death Star Scientist: Tarkin Initiative</option>
+          <option value="https://crls.501st.com/ioc/imperial-officer-crew-non-saga|Imperial Officer Crew Non-Saga">Imperial Officer Crew (Non-Saga)</option>
+        </optgroup>
+        <optgroup label="ID: Imperial Officer">
+          <option value="https://crls.501st.com/ioc/anh-staff-officer|ANH Staff Officer">ANH Staff Officer</option>
+          <option value="https://crls.501st.com/ioc/anh-imperial-army-operations-officer|ANH Army Operations Officer">ANH Imperial Army Operations Officer</option>
+          <option value="https://crls.501st.com/ioc/anh-imperial-security-bureau-officer|ANH ISB Officer">ANH Imperial Security Bureau Officer</option>
+          <option value="https://crls.501st.com/ioc/admiral-tarkin|Admiral Tarkin">Admiral Tarkin</option>
+          <option value="https://crls.501st.com/ioc/grand-moff-tarkin|Grand Moff Tarkin">Grand Moff Tarkin</option>
+          <option value="https://crls.501st.com/ioc/death-squad-commander|Death Squad Commander">Death Squad Commander</option>
+          <option value="https://crls.501st.com/ioc/death-star-nco|Death Star NCO">Death Star NCO</option>
+          <option value="https://crls.501st.com/ioc/imperial-line-officer-olive-uniform|Imperial Line Officer Olive">Imperial Line Officer (Olive Drab)</option>
+          <option value="https://crls.501st.com/ioc/imperial-warrant-officer|Imperial Warrant Officer">Imperial Warrant Officer</option>
+          <option value="https://crls.501st.com/ioc/imperial-cadet|Imperial Cadet">Imperial Cadet</option>
+          <option value="https://crls.501st.com/ioc/imperial-military-officer-non-saga|Imperial Military Officer Non-Saga">Imperial Military Officer (Non-Saga)</option>
+          <option value="https://crls.501st.com/ioc/imperial-officer-mimban|Imperial Officer Mimban">Imperial Officer: Mimban (Solo)</option>
+          <option value="https://crls.501st.com/ioc/director-krennic|Director Krennic">Director Krennic</option>
+          <option value="https://crls.501st.com/ioc/moff-gideon|Moff Gideon">Moff Gideon</option>
+          <option value="https://crls.501st.com/ioc/agent-kallus|Agent Kallus">Agent Kallus (Rebels)</option>
+          <option value="https://crls.501st.com/ioc/governor-arihnda-pryce|Governor Pryce">Governor Arihnda Pryce (Rebels)</option>
+          <option value="https://crls.501st.com/ioc/grand-admiral-thrawn-ahsoka|Grand Admiral Thrawn Ahsoka">Grand Admiral Thrawn: Ahsoka</option>
+          <option value="https://crls.501st.com/ioc/grand-admiral-thrawn-rebels-animated|Grand Admiral Thrawn Rebels">Grand Admiral Thrawn: Rebels</option>
+          <option value="https://crls.501st.com/ioc/grand-admiral-thrawn-legends|Grand Admiral Thrawn Legends">Grand Admiral Thrawn: Legends</option>
+          <option value="https://crls.501st.com/ioc/imperial-grand-admiral-legends|Imperial Grand Admiral Legends">Imperial Grand Admiral (Legends)</option>
+          <option value="https://crls.501st.com/ioc/dedra-meero|Dedra Meero Andor">Dedra Meero (Andor)</option>
+          <option value="https://crls.501st.com/ioc/commandant-jayhold-beehaz|Commandant Beehaz Andor">Commandant Jayhold Beehaz (Andor)</option>
+          <option value="https://crls.501st.com/ioc/lieutenant-ocho|Lieutenant Ocho Andor">Lieutenant Ochō (Andor)</option>
+          <option value="https://crls.501st.com/ioc/transport-security-officer|Transport Security Officer Andor">Transport Security Officer (Andor)</option>
+          <option value="https://crls.501st.com/ioc/first-order-general-hux|General Hux">First Order: General Hux</option>
+          <option value="https://crls.501st.com/ioc/first-order-flag-officer|First Order Flag Officer">First Order: Flag Officer</option>
+          <option value="https://crls.501st.com/ioc/first-order-lieutenant-captain|First Order Lieutenant Captain">First Order: Lieutenant / Captain</option>
+          <option value="https://crls.501st.com/ioc/first-order-colonel-major|First Order Colonel Major">First Order: Colonel / Major</option>
+          <option value="https://crls.501st.com/ioc/first-order-allegiant-general-pryde|Allegiant General Pryde">First Order: Allegiant General Pryde</option>
+          <option value="https://crls.501st.com/ioc/first-order-security-bureau|First Order Security Bureau">First Order: Security Bureau</option>
+          <option value="https://crls.501st.com/ioc/republic-imperial-fleet-officer|Republic Imperial Fleet Officer">Republic/Imperial Fleet Officer</option>
+          <option value="https://crls.501st.com/ioc/republic-officer-the-clone-wars|Republic Officer Clone Wars">Republic Officer - Clone Wars</option>
+          <option value="https://crls.501st.com/ioc/republic-medic|Republic Medic">Republic Medic</option>
+          <option value="https://crls.501st.com/ioc/sith-eternal-officer|Sith Eternal Officer">Sith Eternal Officer (TROS)</option>
+          <option value="https://crls.501st.com/ioc/galen-erso-tarkin-initiative|Galen Erso">Galen Erso - Tarkin Initiative</option>
+          <option value="https://crls.501st.com/ioc/juno-eclipse-rogue-shadow|Juno Eclipse Rogue Shadow">Juno Eclipse: Rogue Shadow</option>
+          <option value="https://crls.501st.com/ioc/juno-eclipse-dress-uniform|Juno Eclipse Dress Uniform">Juno Eclipse: Dress Uniform</option>
+          <option value="https://crls.501st.com/ioc/blackwing-officer-zombie|Blackwing Zombie Officer">Officer: Blackwing Zombie</option>
+        </optgroup>
+        <optgroup label="IG: Imperial Gunner">
+          <option value="https://crls.501st.com/igc/imperial-gunner|Imperial Gunner">Imperial Gunner</option>
+          <option value="https://crls.501st.com/igc/imperial-gunner-rogue-one|Imperial Gunner Rogue One">Imperial Gunner: Rogue One</option>
+          <option value="https://crls.501st.com/igc/imperial-gunner-the-mandalorian|Imperial Gunner Mandalorian">Imperial Gunner: The Mandalorian</option>
+          <option value="https://crls.501st.com/igc/imperial-ground-crew|Imperial Ground Crew Rogue One">Imperial Ground Crew: Rogue One</option>
+          <option value="https://crls.501st.com/igc/imperial-weapons-technician|Imperial Weapons Technician Rebels">Imperial Weapons Technician: Rebels</option>
+          <option value="https://crls.501st.com/igc/imperial-technician-the-bad-batch|Imperial Technician Bad Batch">Imperial Technician: The Bad Batch</option>
+          <option value="https://crls.501st.com/igc/first-order-gunner|First Order Gunner">First Order Gunner</option>
+          <option value="https://crls.501st.com/igc/sith-fleet-technician|Sith Fleet Technician">Sith Fleet Technician (TROS)</option>
+        </optgroup>
+        <optgroup label="IN: Imperial Navy Trooper">
+          <option value="https://crls.501st.com/ioc/imperial-navy-trooper|Imperial Navy Trooper">Imperial Navy Trooper</option>
+          <option value="https://crls.501st.com/ioc/imperial-navy-trooper-non-saga|Imperial Navy Trooper Non-Saga">Imperial Navy Trooper (Non-Saga)</option>
+          <option value="https://crls.501st.com/ioc/imperial-navy-trooper-dress-uniform|Imperial Navy Trooper Dress">Imperial Navy Trooper: Dress Uniform</option>
+        </optgroup>
+        <optgroup label="IS: AT-ST Driver">
+          <option value="https://crls.501st.com/acd/at-st-driver|AT-ST Driver">AT-ST Driver</option>
+        </optgroup>
+        <optgroup label="MW: Mandalorian Warrior">
+          <option value="https://crls.501st.com/bhg/bo-katan-the-mandalorian-season-2|Bo-Katan Mandalorian S2">Bo-Katan: The Mandalorian (Season 2)</option>
+          <option value="https://crls.501st.com/bhg/mandalor-bo-katan|Bo-Katan Mandalor">Bo-Katan: Mand'alore</option>
+          <option value="https://crls.501st.com/bhg/bo-katan-cw-season-4-and-5|Bo-Katan CW S4/5">Bo-Katan: CW Season 4/5</option>
+          <option value="https://crls.501st.com/bhg/bo-katan-cw-season-7|Bo-Katan CW S7">Bo-Katan: CW Season 7</option>
+          <option value="https://crls.501st.com/bhg/death-watch-airborne|Death Watch Airborne">Death Watch: Airborne</option>
+          <option value="https://crls.501st.com/bhg/axe-woves-the-mandalorian|Axe Woves Mandalorian">Axe Woves: The Mandalorian</option>
+          <option value="https://crls.501st.com/bhg/axe-woves-the-mandalorian-season-3|Axe Woves Mandalorian S3">Axe Woves: The Mandalorian Season 3</option>
+        </optgroup>
+        <optgroup label="RC: Republic Commando">
+          <option value="https://crls.501st.com/ctd/republic-commando-boss|RC Boss">Republic Commando: Boss</option>
+          <option value="https://crls.501st.com/ctd/republic-commando-fixer|RC Fixer">Republic Commando: Fixer</option>
+          <option value="https://crls.501st.com/ctd/republic-commando-scorch|RC Scorch">Republic Commando: Scorch</option>
+          <option value="https://crls.501st.com/ctd/republic-commando-sev|RC Sev">Republic Commando: Sev</option>
+        </optgroup>
+        <optgroup label="SC: Scout Trooper">
+          <option value="https://crls.501st.com/pf/scout-trooper|Scout Trooper ROTJ">Scout Trooper: ROTJ</option>
+          <option value="https://crls.501st.com/pf/scout-trooper-the-mandalorian|Scout Trooper Mandalorian">Scout Trooper: The Mandalorian</option>
+        </optgroup>
+        <optgroup label="SL: Sith Lord">
+          <option value="https://crls.501st.com/sld/darth-vader-a-new-hope|Darth Vader ANH">Darth Vader: A New Hope</option>
+          <option value="https://crls.501st.com/sld/darth-vader-esb|Darth Vader ESB">Darth Vader: The Empire Strikes Back</option>
+          <option value="https://crls.501st.com/sld/darth-vader-return-of-the-jedi|Darth Vader ROTJ">Darth Vader: Return of the Jedi</option>
+          <option value="https://crls.501st.com/sld/darth-vader-revenge-of-the-sith|Darth Vader ROTS">Darth Vader: Revenge of the Sith</option>
+          <option value="https://crls.501st.com/sld/darth-vader-rebels|Darth Vader Rebels">Darth Vader: Rebels</option>
+          <option value="https://crls.501st.com/ioc/director-krennic|Darth Vader Rogue One">Darth Vader: Rogue One</option>
+          <option value="https://crls.501st.com/sld/darth-maul-the-phantom-menace|Darth Maul TPM">Darth Maul: The Phantom Menace</option>
+          <option value="https://crls.501st.com/sld/darth-maul-solo|Darth Maul Solo">Darth Maul: Solo</option>
+          <option value="https://crls.501st.com/sld/darth-maul-the-clone-wars|Darth Maul TCW">Darth Maul: The Clone Wars</option>
+          <option value="https://crls.501st.com/sld/count-dooku-attack-of-the-clones|Count Dooku AOTC">Count Dooku: AOTC</option>
+          <option value="https://crls.501st.com/sld/count-dooku-rots|Count Dooku ROTS">Count Dooku: ROTS</option>
+          <option value="https://crls.501st.com/sld/darth-sidious-revenge-of-the-sith|Darth Sidious ROTS">Darth Sidious: ROTS</option>
+          <option value="https://crls.501st.com/sld/darth-sidious-esb-rotj|Darth Sidious ESB ROTJ">Darth Sidious: ESB/ROTJ (Black Sith Robe)</option>
+        </optgroup>
+        <optgroup label="SR: Imperial Royal Guard / Praetorian">
+          <option value="https://crls.501st.com/sp/imperial-royal-guard-rotj|Imperial Royal Guard ROTJ">Imperial Royal Guard: ROTJ</option>
+          <option value="https://crls.501st.com/sp/praetorian-guard-tlj-heavy-blade|Praetorian Guard Heavy Blade">Praetorian Guard: TLJ (Heavy Blade)</option>
+          <option value="https://crls.501st.com/sp/praetorian-guard-tlj-whip-blade|Praetorian Guard Whip Blade">Praetorian Guard: TLJ (Whip &amp; Blade)</option>
+        </optgroup>
+        <optgroup label="SS: Spec Ops">
+          <option value="https://crls.501st.com/so/shadow-stormtrooper|Shadow Stormtrooper">Shadow Stormtrooper</option>
+          <option value="https://crls.501st.com/so/nova-trooper|Nova Trooper">Nova Trooper</option>
         </optgroup>
         <optgroup label="ST: Stormtrooper">
           <option value="https://crls.501st.com/isd/stormtrooper-anh-hero|Stormtrooper ANH Hero">Stormtrooper: ANH Hero</option>
           <option value="https://crls.501st.com/isd/stormtrooper-anh-stunt|Stormtrooper ANH Stunt">Stormtrooper: ANH Stunt</option>
           <option value="https://crls.501st.com/isd/stormtrooper-esb|Stormtrooper ESB">Stormtrooper: ESB</option>
           <option value="https://crls.501st.com/isd/stormtrooper-rotj|Stormtrooper ROTJ">Stormtrooper: ROTJ</option>
-          <option value="https://crls.501st.com/isd/stormtrooper-rogue-one|Stormtrooper R1">Stormtrooper: Rogue One</option>
+          <option value="https://crls.501st.com/isd/stormtrooper-rogue-one|Stormtrooper Rogue One">Stormtrooper: Rogue One</option>
           <option value="https://crls.501st.com/bf/snowtrooper-esb|Snowtrooper ESB">Snowtrooper: ESB</option>
+          <option value="https://crls.501st.com/bf/snowtrooper-commander-esb|Snowtrooper Commander ESB">Snowtrooper Commander: ESB</option>
           <option value="https://crls.501st.com/sd/sandtrooper-anh|Sandtrooper ANH">Sandtrooper: ANH</option>
-          <option value="https://crls.501st.com/isd/death-trooper-rogue-one|Death Trooper R1">Death Trooper: Rogue One</option>
-          <option value="https://crls.501st.com/isd/shoretrooper-rogue-one|Shoretrooper R1">Shoretrooper: Rogue One</option>
-          <option value="https://crls.501st.com/isd/mimban-stormtrooper-solo|Mimban Stormtrooper">Mimban Stormtrooper: Solo</option>
+          <option value="https://crls.501st.com/isd/death-trooper-rogue-one|Death Trooper Rogue One">Death Trooper: Rogue One</option>
+          <option value="https://crls.501st.com/isd/shoretrooper-rogue-one|Shoretrooper Rogue One">Shoretrooper: Rogue One</option>
+          <option value="https://crls.501st.com/isd/range-trooper-solo|Range Trooper Solo">Range Trooper: Solo</option>
+          <option value="https://crls.501st.com/isd/mimban-stormtrooper-solo|Mimban Stormtrooper Solo">Mimban Stormtrooper: Solo</option>
+          <option value="https://crls.501st.com/isd/patrol-trooper-solo|Patrol Trooper Solo">Patrol Trooper: Solo</option>
+          <option value="https://crls.501st.com/isd/mudtrooper-solo|Mudtrooper Solo">Mudtrooper: Solo</option>
+          <option value="https://crls.501st.com/isd/heavy-assault-stormtrooper|Heavy Assault Stormtrooper">Heavy Assault Stormtrooper</option>
           <option value="https://crls.501st.com/isd/first-order-stormtrooper-tfa|FO Stormtrooper TFA">First Order Stormtrooper: TFA</option>
           <option value="https://crls.501st.com/isd/first-order-stormtrooper-tlj|FO Stormtrooper TLJ">First Order Stormtrooper: TLJ</option>
+          <option value="https://crls.501st.com/isd/first-order-stormtrooper-tros|FO Stormtrooper TROS">First Order Stormtrooper: TROS</option>
+          <option value="https://crls.501st.com/isd/first-order-flametrooper-tfa|FO Flametrooper TFA">First Order Flametrooper: TFA</option>
+          <option value="https://crls.501st.com/isd/first-order-snowtrooper-tfa|FO Snowtrooper TFA">First Order Snowtrooper: TFA</option>
         </optgroup>
         <optgroup label="TD: TIE Fighter Pilot">
           <option value="https://crls.501st.com/jrs/tie-fighter-pilot-anh|TIE Pilot ANH">TIE Fighter Pilot: ANH</option>
           <option value="https://crls.501st.com/jrs/tie-fighter-pilot-esb|TIE Pilot ESB">TIE Fighter Pilot: ESB</option>
           <option value="https://crls.501st.com/jrs/tie-fighter-pilot-rotj|TIE Pilot ROTJ">TIE Fighter Pilot: ROTJ</option>
           <option value="https://crls.501st.com/jrs/first-order-tie-pilot-tfa|FO TIE Pilot TFA">First Order TIE Pilot: TFA</option>
-        </optgroup>
-        <optgroup label="ID: Imperial Officer">
-          <option value="https://crls.501st.com/ioc/anh-staff-officer|ANH Staff Officer">ANH Staff Officer</option>
-          <option value="https://crls.501st.com/ioc/grand-moff-tarkin|Grand Moff Tarkin">Grand Moff Tarkin</option>
-          <option value="https://crls.501st.com/ioc/director-krennic|Director Krennic">Director Krennic</option>
-          <option value="https://crls.501st.com/ioc/moff-gideon|Moff Gideon">Moff Gideon</option>
-          <option value="https://crls.501st.com/ioc/grand-admiral-thrawn-ahsoka|Thrawn Ahsoka">Grand Admiral Thrawn: Ahsoka</option>
-          <option value="https://crls.501st.com/ioc/death-squad-commander|Death Squad Commander">Death Squad Commander</option>
-          <option value="https://crls.501st.com/ioc/imperial-cadet|Imperial Cadet">Imperial Cadet</option>
-        </optgroup>
-        <optgroup label="CC: Clone Commander">
-          <option value="https://crls.501st.com/ctd/captain-rex-phase-1|Rex Phase 1">Clone Captain Rex (TCW Phase 1)</option>
-          <option value="https://crls.501st.com/ctd/captain-rex-phase-2|Rex Phase 2">Clone Captain Rex (TCW Phase 2)</option>
-          <option value="https://crls.501st.com/ctd/commander-cody-phase-ii|Cody ROTS">Commander Cody (ROTS Phase 2)</option>
-          <option value="https://crls.501st.com/ctd/commander-wolffe-season-2|Wolffe S2">Commander Wolffe (TCW Phase 1)</option>
-          <option value="https://crls.501st.com/ctd/commander-thorn|Thorn">Commander Thorn (TCW Phase 2)</option>
-        </optgroup>
-        <optgroup label="CT: Clone Trooper">
-          <option value="https://crls.501st.com/ctd/501st-clone-trooper|501st ROTS">501st Clone Trooper (ROTS Phase 2)</option>
-          <option value="https://crls.501st.com/ctd/212th-attack-battalion|212th ROTS">212th Attack Battalion (ROTS)</option>
-          <option value="https://crls.501st.com/ctd/shock-trooper|Shock Trooper ROTS">Shock Trooper (ROTS Phase 2)</option>
-          <option value="https://crls.501st.com/ctd/clone-trooper-phase-ii|Standard ROTS">Clone Trooper Standard (ROTS Phase 2)</option>
-          <option value="https://crls.501st.com/ctd/332nd-division-clone-trooper|332nd TCW">332nd Division (TCW Phase 2)</option>
-        </optgroup>
-        <optgroup label="DS: Dark Side Adept">
-          <option value="https://crls.501st.com/tfe/grand-inquisitor|Grand Inquisitor">Grand Inquisitor</option>
-          <option value="https://crls.501st.com/tfe/third-sister-reva-obi-wan-kenobi|Third Sister Reva">Third Sister: Reva</option>
-          <option value="https://crls.501st.com/tfe/asajj-ventress-clone-wars|Asajj Ventress CW">Asajj Ventress: Clone Wars</option>
-        </optgroup>
-        <optgroup label="DZ: Denizen">
-          <option value="https://crls.501st.com/kc/jawa|Jawa">Jawa</option>
-          <option value="https://crls.501st.com/kc/tusken-raider|Tusken Raider ANH">Tusken Raider ANH (male)</option>
-          <option value="https://crls.501st.com/kc/gamorrean-guard|Gamorrean Guard">Gamorrean Guard</option>
-        </optgroup>
-        <optgroup label="SR: Imperial Royal Guard">
-          <option value="https://crls.501st.com/sp/imperial-royal-guard-rotj|Imperial Royal Guard">Imperial Royal Guard: ROTJ</option>
-        </optgroup>
-        <optgroup label="MW: Mandalorian Warrior">
-          <option value="https://crls.501st.com/bhg/bo-katan-the-mandalorian-season-2|Bo-Katan S2">Bo-Katan: The Mandalorian S2</option>
-          <option value="https://crls.501st.com/bhg/mandalor-bo-katan|Bo-Katan Mandalor">Bo-Katan: Mand'alore</option>
-        </optgroup>
-        <optgroup label="AR: ARC Trooper">
-          <option value="https://crls.501st.com/ctd/advanced-recon-commando-standard|ARC Standard">ARC Trooper Standard (EU Phase 1)</option>
-          <option value="https://crls.501st.com/ctd/advanced-recon-commando-fives-phase-i|ARC Fives">ARC Trooper: Fives (TCW Phase 1)</option>
+          <option value="https://crls.501st.com/jrs/first-order-tie-pilot-tlj|FO TIE Pilot TLJ">First Order TIE Pilot: TLJ</option>
         </optgroup>
       </select>
     </div>
   </div>
 
-  <!-- Step 2 -->
   <div class="card">
     <div class="card-head"><span class="step">02</span><span class="card-title">KOSTÜMFOTOS HOCHLADEN</span></div>
     <div class="card-body">
@@ -216,14 +448,13 @@ input[type=text]::placeholder{color:var(--dim)}
         <input type="file" id="fileInput" accept="image/*" multiple onchange="handleFiles(this.files)">
         <div class="upload-icon">📸</div>
         <div class="upload-title">TIPPEN ODER ABLEGEN</div>
-        <div class="upload-sub">JPG · PNG · WEBP · Max. 2 Fotos</div>
+        <div class="upload-sub">JPG · PNG · WEBP · Max. 3 Fotos</div>
       </div>
       <div class="img-grid" id="imgGrid"></div>
       <div class="img-count" id="imgCount"></div>
     </div>
   </div>
 
-  <!-- Step 3 -->
   <div class="card">
     <div class="card-head"><span class="step">03</span><span class="card-title">OPTIONALE HINWEISE</span></div>
     <div class="card-body">
@@ -232,7 +463,6 @@ input[type=text]::placeholder{color:var(--dim)}
   </div>
 
   <button class="btn" id="analyzeBtn" onclick="analyze()" disabled>▶ KOSTÜM ANALYSIEREN</button>
-
   <div id="loading"><div class="bar"></div><div class="load-msg" id="loadMsg">ANALYSIERE...</div></div>
   <div class="error" id="errorBox"></div>
 
@@ -262,14 +492,14 @@ input[type=text]::placeholder{color:var(--dim)}
 </main>
 
 <script>
-const images = [];
-let selectedUrl = '';
-let selectedName = '';
+var images = [];
+var selectedUrl = '';
+var selectedName = '';
 
 function onSelectChange() {
-  const val = document.getElementById('costumeSelect').value;
+  var val = document.getElementById('costumeSelect').value;
   if (val) {
-    const parts = val.split('|');
+    var parts = val.split('|');
     selectedUrl = parts[0];
     selectedName = parts[1] || parts[0];
   } else {
@@ -280,14 +510,15 @@ function onSelectChange() {
 }
 
 function handleFiles(files) {
-  Array.from(files).forEach(f => {
+  var arr = Array.prototype.slice.call(files);
+  arr.forEach(function(f) {
     if (!f.type.startsWith('image/')) return;
-    const reader = new FileReader();
+    if (images.length >= 3) {
+      alert('Maximal 3 Fotos. Bitte wähle die wichtigsten (z.B. vorne, hinten, Detail).');
+      return;
+    }
+    var reader = new FileReader();
     reader.onload = function(e) {
-      if (images.length >= 2) {
-        alert('Maximal 2 Fotos erlaubt. Bitte wähle die wichtigsten 2 Aufnahmen (z.B. Vorne und Hinten).');
-        return;
-      }
       images.push({ data: e.target.result, type: f.type, name: f.name });
       renderImages();
       updateBtn();
@@ -297,28 +528,26 @@ function handleFiles(files) {
 }
 
 function renderImages() {
-  const grid = document.getElementById('imgGrid');
+  var grid = document.getElementById('imgGrid');
   grid.innerHTML = '';
   images.forEach(function(img, i) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.className = 'img-thumb';
-    const im = document.createElement('img');
+    var im = document.createElement('img');
     im.src = img.data;
-    const btn = document.createElement('button');
+    var btn = document.createElement('button');
     btn.textContent = '✕';
     btn.onclick = function() { removeImg(i); };
     div.appendChild(im);
     div.appendChild(btn);
     grid.appendChild(div);
   });
-  document.getElementById('imgCount').textContent = images.length > 0 ? '► ' + images.length + ' FOTO' + (images.length > 1 ? 'S' : '') + ' GELADEN' : '';
+  document.getElementById('imgCount').textContent = images.length > 0
+    ? '► ' + images.length + ' FOTO' + (images.length > 1 ? 'S' : '') + ' GELADEN'
+    : '';
 }
 
-function removeImg(i) {
-  images.splice(i, 1);
-  renderImages();
-  updateBtn();
-}
+function removeImg(i) { images.splice(i, 1); renderImages(); updateBtn(); }
 
 function updateBtn() {
   document.getElementById('analyzeBtn').disabled = !(selectedUrl && images.length > 0);
@@ -328,24 +557,44 @@ function setMsg(t) { document.getElementById('loadMsg').textContent = t; }
 
 function showError(msg) {
   document.getElementById('loading').classList.remove('show');
-  const eb = document.getElementById('errorBox');
+  var eb = document.getElementById('errorBox');
   eb.style.display = 'block';
   eb.textContent = msg;
   document.getElementById('analyzeBtn').disabled = false;
   updateBtn();
 }
 
-async function callApi(payload) {
-  const res = await fetch('/api/analyze', {
+function callApi(payload) {
+  return fetch('/api/analyze', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
+  }).then(function(res) { return res.json(); });
+}
+
+function compressImage(imgObj) {
+  return new Promise(function(resolve) {
+    var img = new Image();
+    img.onload = function() {
+      var MAX = 500;
+      var w = img.width, h = img.height;
+      if (w > MAX || h > MAX) {
+        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+        else { w = Math.round(w * MAX / h); h = MAX; }
+      }
+      var c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      c.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve({ data: c.toDataURL('image/jpeg', 0.6), type: 'image/jpeg' });
+    };
+    img.onerror = function() { resolve({ data: imgObj.data, type: imgObj.type }); };
+    img.src = imgObj.data;
   });
-  return await res.json();
 }
 
 async function analyze() {
   if (!selectedUrl || images.length === 0) return;
+  var extra = document.getElementById('extraInfo').value.trim();
 
   document.getElementById('analyzeBtn').disabled = true;
   document.getElementById('loading').classList.add('show');
@@ -353,66 +602,43 @@ async function analyze() {
   document.getElementById('errorBox').style.display = 'none';
   document.getElementById('rawBox').style.display = 'none';
   document.getElementById('stepsPanel').style.display = 'none';
-  setMsg('CRL WIRD GELADEN...');
-
-  // Step 1: use costume name directly, no separate CRL fetch
-  var crlContent = 'Kostüm: ' + selectedName + '\nCRL URL: ' + selectedUrl;
-  setMsg('KOSTÜM WIRD ANALYSIERT...');
-
-  // Step 2: compress images
   setMsg('BILDER WERDEN KOMPRIMIERT...');
-  const compressedImgs = [];
-  for (let i = 0; i < images.length; i++) {
+
+  var compressedImgs = [];
+  for (var i = 0; i < images.length; i++) {
     try {
-      const compressed = await new Promise(function(resolve) {
-        const img = new Image();
-        img.onload = function() {
-          const MAX = 400;
-          let w = img.width, h = img.height;
-          if (w > MAX || h > MAX) {
-            if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
-            else { w = Math.round(w * MAX / h); h = MAX; }
-          }
-          const c = document.createElement('canvas');
-          c.width = w; c.height = h;
-          c.getContext('2d').drawImage(img, 0, 0, w, h);
-          resolve({ data: c.toDataURL('image/jpeg', 0.5), type: 'image/jpeg' });
-        };
-        img.onerror = function() { resolve({ data: images[i].data, type: images[i].type }); };
-        img.src = images[i].data;
-      });
+      var compressed = await compressImage(images[i]);
       compressedImgs.push(compressed);
     } catch(e) {
       compressedImgs.push({ data: images[i].data, type: images[i].type });
     }
   }
 
-  setMsg('ANALYSIERE...');
+  setMsg('KOSTÜM WIRD ANALYSIERT...');
 
-  // Step 3: analyze
   try {
-    const imgContent = compressedImgs.map(function(img) {
+    var imgContent = compressedImgs.map(function(img) {
       return { type: 'image', source: { type: 'base64', media_type: img.type, data: img.data.split(',')[1] } };
     });
-    imgContent.push({ type: 'text', text: 'Kostüm: ' + selectedName + '\n\nCRL:\n' + crlContent + '\n\nAnalysiere jede Anforderung konkret.' });
+    imgContent.push({ type: 'text', text: 'Kostüm: ' + selectedName + '\nCRL: ' + selectedUrl + '\n\n' + (extra ? 'Zusatzinfo: ' + extra + '\n\n' : '') + 'Analysiere dieses Kostüm gegen die 501st Legion CRL-Anforderungen. Sei konkret und spezifisch.' });
 
-    const d2 = await callApi({
+    var d = await callApi({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 2000,
       system: 'Du bist ein erfahrener 501st Legion GML. Analysiere Kostümfotos gegen CRL-Anforderungen. Antworte NUR mit validem JSON ohne Markdown: {"score":0-100,"verdict":"READY FOR APPROVAL|NEEDS WORK|NOT APPROVABLE","verdictTitle":"...","verdictText":"...","sections":[{"name":"...","items":[{"status":"ok|fail|warn","requirement":"...","comment":"..."}]}],"nextSteps":["..."]}',
       messages: [{ role: 'user', content: imgContent }]
     });
 
-    if (d2.error) { showError('API Fehler: ' + d2.error.type + ' – ' + d2.error.message); return; }
+    if (d.error) { showError('API Fehler: ' + d.error.type + ' – ' + d.error.message); return; }
 
-    const raw = (d2.content || []).map(function(b) { return b.text || ''; }).join('\n');
+    var raw = (d.content || []).map(function(b) { return b.text || ''; }).join('\n');
     document.getElementById('loading').classList.remove('show');
     document.getElementById('results').style.display = 'block';
 
     try {
-      const cleaned = raw.replace(/```json|```/g, '').trim();
-      const s = cleaned.indexOf('{');
-      const e = cleaned.lastIndexOf('}');
+      var cleaned = raw.replace(/```json|```/g, '').trim();
+      var s = cleaned.indexOf('{');
+      var e = cleaned.lastIndexOf('}');
       if (s === -1) throw new Error('Kein JSON');
       renderResult(JSON.parse(cleaned.substring(s, e + 1)));
     } catch(pe) {
@@ -420,10 +646,10 @@ async function analyze() {
       document.getElementById('rawBox').textContent = raw;
       document.getElementById('scoreNum').textContent = '?';
       document.getElementById('vtitle').textContent = 'Analyse abgeschlossen';
-      document.getElementById('vtext').textContent = 'Ergebnis als Rohdaten:';
+      document.getElementById('vtext').textContent = 'Ergebnis als Rohdaten unten.';
     }
-  } catch(e) {
-    showError('FEHLER: ' + e.message);
+  } catch(err) {
+    showError('FEHLER: ' + err.message);
   }
 
   document.getElementById('analyzeBtn').disabled = false;
@@ -433,45 +659,51 @@ async function analyze() {
 function scoreColor(s) { return s >= 80 ? '#22cc66' : s >= 50 ? '#e8c050' : '#cc0000'; }
 
 function renderResult(j) {
-  const sc = document.getElementById('scoreCircle');
-  const sn = document.getElementById('scoreNum');
-  const score = j.score || 0;
-  const c = scoreColor(score);
+  var sc = document.getElementById('scoreCircle');
+  var sn = document.getElementById('scoreNum');
+  var score = j.score || 0;
+  var c = scoreColor(score);
   sn.textContent = score;
   sc.style.color = c;
   sc.style.boxShadow = '0 0 20px ' + c + '44';
 
-  const tag = document.getElementById('vtag');
-  if (j.verdict && j.verdict.includes('READY')) { tag.className = 'vtag ok'; tag.textContent = '✓ READY FOR APPROVAL'; }
-  else if (j.verdict && j.verdict.includes('NEEDS')) { tag.className = 'vtag warn'; tag.textContent = '⚠ NEEDS WORK'; }
+  var tag = document.getElementById('vtag');
+  if (j.verdict && j.verdict.indexOf('READY') !== -1) { tag.className = 'vtag ok'; tag.textContent = '✓ READY FOR APPROVAL'; }
+  else if (j.verdict && j.verdict.indexOf('NEEDS') !== -1) { tag.className = 'vtag warn'; tag.textContent = '⚠ NEEDS WORK'; }
   else { tag.className = 'vtag fail'; tag.textContent = '✗ NOT APPROVABLE'; }
 
   document.getElementById('vtitle').textContent = j.verdictTitle || '';
   document.getElementById('vtext').textContent = j.verdictText || '';
 
-  const list = document.getElementById('reqList');
+  var list = document.getElementById('reqList');
   list.innerHTML = '';
   (j.sections || []).forEach(function(sec) {
-    const t = document.createElement('div'); t.className = 'sec-title'; t.textContent = '► ' + sec.name; list.appendChild(t);
+    var t = document.createElement('div'); t.className = 'sec-title'; t.textContent = '► ' + sec.name; list.appendChild(t);
     (sec.items || []).forEach(function(item) {
-      const row = document.createElement('div'); row.className = 'req-item';
-      const ic = document.createElement('div');
-      ic.className = 'req-ic ' + ({ ok: 'ic-ok', fail: 'ic-fail', warn: 'ic-warn' }[item.status] || 'ic-warn');
-      ic.textContent = { ok: '✓', fail: '✗', warn: '?' }[item.status] || '?';
-      const txt = document.createElement('div'); txt.className = 'req-text';
-      txt.innerHTML = '<div class="req-r">' + (item.requirement || '') + '</div>' + (item.comment ? '<div class="req-c">' + item.comment + '</div>' : '');
+      var row = document.createElement('div'); row.className = 'req-item';
+      var icMap = { ok: 'ic-ok', fail: 'ic-fail', warn: 'ic-warn' };
+      var symMap = { ok: '✓', fail: '✗', warn: '?' };
+      var ic = document.createElement('div');
+      ic.className = 'req-ic ' + (icMap[item.status] || 'ic-warn');
+      ic.textContent = symMap[item.status] || '?';
+      var txt = document.createElement('div');
+      var r = document.createElement('div'); r.className = 'req-r'; r.textContent = item.requirement || '';
+      txt.appendChild(r);
+      if (item.comment) { var cm = document.createElement('div'); cm.className = 'req-c'; cm.textContent = item.comment; txt.appendChild(cm); }
       row.appendChild(ic); row.appendChild(txt); list.appendChild(row);
     });
   });
 
-  const steps = j.nextSteps || [];
+  var steps = j.nextSteps || [];
   if (steps.length) {
     document.getElementById('stepsPanel').style.display = 'block';
-    const sl = document.getElementById('stepsList');
+    var sl = document.getElementById('stepsList');
     sl.innerHTML = '';
     steps.forEach(function(s, i) {
-      const d = document.createElement('div'); d.className = 'step-item';
-      d.innerHTML = '<span class="step-n">0' + (i + 1) + '</span>' + s;
+      var d = document.createElement('div'); d.className = 'step-item';
+      var n = document.createElement('span'); n.className = 'step-n'; n.textContent = '0' + (i + 1);
+      d.appendChild(n);
+      d.appendChild(document.createTextNode(s));
       sl.appendChild(d);
     });
   }
